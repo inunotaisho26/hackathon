@@ -30,6 +30,7 @@
         "app/src/repositories/base/base.repo.ts",
         "app/src/services/base/base.svc.ts",
         "app/src/services/customer/customer.svc.ts",
+        "app/src/services/link/link.svc.ts",
         "app/src/services/list/list.svc.ts",
         "app/src/services/product/product.svc.ts",
         "app/src/services/store/store.svc.ts",

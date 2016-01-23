@@ -35,7 +35,7 @@ declare namespace models {
 
     interface IListItems {
         pagingMetaData: IPagingMetaData;
-        list: Array<any>;
+        list: Array<IListItem>;
     }
 
     interface IListItem {
@@ -225,5 +225,14 @@ declare namespace models {
         thursday: Array<number>;
         tuesday: Array<number>;
         wednesday: Array<number>;
+    }
+
+    interface ISpecification {
+        specs: Array<IKeyValue>;
+    }
+
+    interface IKeyValue {
+        Key: string;
+        Value: string;
     }
 }
