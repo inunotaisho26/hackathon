@@ -1,5 +1,6 @@
 import {register, controls} from 'platypus';
 import BaseViewControl from '../base/base.vc';
+import CustomerSvc from '../../services/customer/customer.svc';
 
 export default class MyLowesViewControl extends BaseViewControl {
     templateString: string = require('./mylowes.vc.html');
@@ -15,6 +16,10 @@ export default class MyLowesViewControl extends BaseViewControl {
     email: controls.INamedElement<HTMLInputElement, void>;
     password: controls.INamedElement<HTMLInputElement, void>;
 
+    constructor(protected svc: CustomerSvc) {
+        super();
+    }
+
     initialize() {
         // try and get customer
     }
@@ -27,14 +32,16 @@ export default class MyLowesViewControl extends BaseViewControl {
 
         this.clear();
         let isEmpty = this.utils.isEmpty,
-            error = false;
+            error = false,
+            email = context.email,
+            password = context.password;
 
-        if (isEmpty(context.email)) {
+        if (isEmpty(email)) {
             error = true;
             this.dom.addClass(this.email.element, 'invalid');
         }
 
-        if (isEmpty(context.password)) {
+        if (isEmpty(password)) {
             error = true;
             this.dom.addClass(this.password.element, 'invalid');
         }
@@ -44,6 +51,12 @@ export default class MyLowesViewControl extends BaseViewControl {
         }
 
         context.processing = true;
+
+        this.svc.login(email, password).then((user) => {
+            console.log(user);
+        }).catch((error) => {
+            console.log(error);
+        });
     }
 
     clear() {
@@ -53,4 +66,6 @@ export default class MyLowesViewControl extends BaseViewControl {
     }
 }
 
-register.viewControl('mylowes-vc', MyLowesViewControl);
+register.viewControl('mylowes-vc', MyLowesViewControl, [
+    CustomerSvc
+]);
