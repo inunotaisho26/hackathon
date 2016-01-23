@@ -1,27 +1,33 @@
-import {async, debug, Utils} from 'platypus';
+import {async, debug, storage, Utils} from 'platypus';
 import {OAUTH_HEADER, OAUTH_PREFIX, SSO_HEADER} from '../../references/references';
 
 export default class BaseService {
     protected static _inject: any = {
         http: async.Http,
+        log: debug.Log,
         Promise: async.IPromise,
-        utils: Utils,
-        log: debug.Log
+        storage: storage.LocalStorage,
+        utils: Utils
     };
     protected static accessToken = 'QWRvYmU6ZW9pdWV3ZjA5ZmV3bw==';
-    protected static host = 'https://api.lowes.com';
+    protected static host = 'http://api.lowes.com';
     protected static ssoToken = '';
     protected static apiKey = 'xfjtt93gs7yxs9rnph96v4c3';
 
     protected http: async.Http;
-    protected Promise: async.IPromise;
-    protected utils: Utils;
     protected log: debug.Log;
+    protected Promise: async.IPromise;
+    protected storage: storage.LocalStorage;
+    protected utils: Utils;
     protected api = '';
 
     constructor(api: string) {
         if (!this.utils.isString(api) || api.length === 0) {
             return;
+        }
+
+        if (api[0] !== '/') {
+            api = '/' + api;
         }
 
         this.api = api + '/';
@@ -67,7 +73,7 @@ export default class BaseService {
             headers[OAUTH_HEADER] = OAUTH_PREFIX + BaseService.accessToken;
         }
 
-        if(utils.isString(BaseService.ssoToken)) {
+        if (utils.isString(BaseService.ssoToken)) {
             headers[SSO_HEADER] = BaseService.ssoToken;
         }
 
@@ -79,7 +85,7 @@ export default class BaseService {
 
         let url = options.url;
 
-        if(url.indexOf('?') > -1) {
+        if (url.indexOf('?') > -1) {
             url += '&';
         } else {
             url += '?'
@@ -124,7 +130,7 @@ export default class BaseService {
             return key + '=' + value;
         }, query).join('&');
 
-        if(!utils.isEmpty(q)) {
+        if (!utils.isEmpty(q)) {
             q = '?' + q;
         }
 

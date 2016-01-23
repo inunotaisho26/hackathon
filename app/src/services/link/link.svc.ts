@@ -11,10 +11,9 @@ export default class LinkService extends BaseService {
     }
 
     protected info(link: string): async.IThenable<any> {
-        return this.json({
-            method: 'GET',
+        return this.http.json({
             url: link
-        });
+        }).then(this.handleResponse, this.handleError);
     }
 }
 
