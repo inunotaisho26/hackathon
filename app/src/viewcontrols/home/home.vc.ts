@@ -16,6 +16,7 @@ export default class HomeViewControl extends BaseViewControl {
                 title: 'Trees and Shrubs',
                 description: '',
                 products: [{
+                    id: 3625560,
                     name: '3.25-Gallon Varied-Color Camellia',
                     imageUrls: {
                         sm: "http://mobileimages.lowes.com/product/converted/020536/020536017679sm.jpg",
@@ -28,6 +29,7 @@ export default class HomeViewControl extends BaseViewControl {
                 title: 'Perennials',
                 description: '',
                 products: [{
+                    id: 4773061,
                     name: '2.5-Quart Spiderwort',
                     imageUrls: {
                         sm: "http://mobileimages.lowes.com/product/converted/022532/022532069614sm.jpg",
@@ -36,6 +38,7 @@ export default class HomeViewControl extends BaseViewControl {
                     },
                     description: 'Spiderwort (Tradescantia) are weakly upright to scrambling plants, growing at a moderate pace to a maximum height of around 24 inches. Hardy in zones 4-8, spiderwort enjoy partial sun with adequate moisture. The flowers can be white, pink, or purple, but are most commonly bright blue, with three petals and six yellow anthers.'
                 }, {
+                    id: 4315817,
                     name: '2.5-Quart Asparagus Fern',
                     imageUrls: {
                         sm: "http://mobileimages.lowes.com/product/converted/020536/020536327020sm.jpg",
@@ -48,6 +51,7 @@ export default class HomeViewControl extends BaseViewControl {
                 title: 'Annuals',
                 description: '',
                 products: [{
+                    id: 999919988,
                     name: '1.25-Quart Caladium',
                     imageUrls: {
                         sm: "http://mobileimages.lowes.com/product/converted/014934/014934586097sm.jpg",

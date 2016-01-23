@@ -2,8 +2,8 @@
     <section class="hero-caption">
         <div class="container">
             <h1 class="hero-title uppercase">Welcome{{!user ? '' : ' ' + user.firstname}}!</h1>
-            <p class="hero-description uppercase">Here are a few great recommendations based on your current {{!user ? 'location' : 'profile'}}.</p>
-            <plat-link class="button-link" plat-options="{ view: MyLowes }">My Lowe's</plat-link>
+            <div class="hero-description uppercase bold">Here are a few great recommendations based on your current {{!user ? 'location' : 'profile'}}</div>
+            <plat-link class="button-link" plat-options="{ view: MyLowes }">{{!user ? 'Login' : "My Lowe's"}}</plat-link>
         </div>
     </section>
     <section class="overlay"></section>
