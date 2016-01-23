@@ -5,7 +5,15 @@ import Link from '../../services/link/link.svc';
 
 export default class HomeViewControl extends BaseViewControl {
     templateString: string = require('./home.vc.html');
-    context = {};
+    context = {
+        sections: [{
+            title: 'Trees and Shrubs',
+            description: '',
+            products: [{
+
+            }]
+        }]
+    };
 
     protected title: string = 'Home';
     protected description: string = 'Home page description';
