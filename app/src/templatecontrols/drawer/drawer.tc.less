@@ -3,7 +3,7 @@
     #platui > #variables;
 
 	.plat-drawer {
-		background-color: lighten(@neutral-color, 25%);
+        background-color: @primary-color;
 
         @item-height: @navbar-height;
 
@@ -11,22 +11,6 @@
 			height: 100%;
 			width: 100%;
 			position: relative;
-
-            /// use this for setting a background for the drawer
-			&:after {
-				z-index: -1;
-				content: '';
-				position: absolute;
-				top: 0;
-				bottom: 0;
-				left: 0;
-				right: 0;
-				background-image: url(@navbar-logo);
-				background-size: 90%;
-				background-position: 50% 95%;
-				background-repeat: no-repeat;
-				opacity: 0.05;
-			}
 
 			& .drawer-menu {
 				z-index: 10;
@@ -38,7 +22,6 @@
 					width: 100%;
 					height: @item-height;
                     margin: 0;
-					border-top: 1px solid darken(@neutral-color, 5%);
 
 					& a {
                         @link-size: 1.5em;
@@ -49,15 +32,20 @@
 						width: 100%;
 						padding: 0 @link-size;
 						cursor: pointer;
+                        color: @white;
+
+                        & > i {
+                            margin-right: 0.5em;
+                        }
 					}
 
 					&:active, &.selected {
-						background-color: fadeout(@neutral-color, 50%);
+						background-color: lighten(@primary-color, 20%);
 					}
 
-					&:last-child {
-                        .box-shadow(@box-shadow);
-					}
+					// &:last-child {
+                    //     .box-shadow(@box-shadow);
+					// }
 				}
 			}
 		}

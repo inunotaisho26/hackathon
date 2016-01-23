@@ -34,7 +34,6 @@
         "app/src/services/product/product.svc.ts",
         "app/src/services/store/store.svc.ts",
         "app/src/templatecontrols/drawer/drawer.tc.ts",
-        "app/src/templatecontrols/footer/footer.tc.ts",
         "app/src/templatecontrols/navbar/navbar.tc.ts",
         "app/src/viewcontrols/base/base.vc.ts",
         "app/src/viewcontrols/home/home.vc.ts",

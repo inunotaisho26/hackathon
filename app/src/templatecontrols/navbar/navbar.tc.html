@@ -1,10 +1,18 @@
-<div class="navbar-logo-container">
-	<plat-link plat-options="{ view: Home }">
-		<img src="/images/logos/navbar.svg" alt="" class="navbar-logo">
-	</plat-link>
-</div>
-<plat-drawer-controller class="drawer-controller hide-above-phn">
+<plat-drawer-controller class="drawer-controller item{{selected === 'menu' ? ' selected' : ''}}" plat-tap="navigate('menu')">
+    <span class="item-text">Menu</span>
 </plat-drawer-controller>
-<div class="navbar-menu-container hide-on-phn">
-
+<div class="item{{selected === 'test' ? ' selected' : ''}}" plat-tap="navigate('test')">
+    <i class="fa fa-home"></i>
+    <span class="item-text">Test</span>
+</div>
+<div class="item{{selected === 'lorem' ? ' selected' : ''}}" plat-tap="navigate('lorem')">
+    <i class="fa fa-shopping-basket"></i>
+    <span class="item-text">Lorem</span>
+</div>
+<div class="item{{selected === 'ipsum' ? ' selected' : ''}}" plat-tap="navigate('ipsum')">
+    <i class="fa fa-paw"></i>
+    <span class="item-text">Ipsum</span>
+</div>
+<div class="my-lowes item{{selected === 'lowes' ? ' selected' : ''}}" plat-tap="navigate('lowes')">
+    <span class="item-text">Lowe's</span>
 </div>
