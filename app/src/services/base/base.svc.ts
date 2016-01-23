@@ -69,25 +69,19 @@ export default class BaseService {
 
         let headers = <any>{};
 
-        // if (utils.isString(BaseService.accessToken)) {
-        //     headers[OAUTH_HEADER] = OAUTH_PREFIX + BaseService.accessToken;
-        // }
-        //  headers[OAUTH_HEADER] = 'Basic ' + btoa('developerevent:L0wesEvent!');
-        // if (utils.isString(BaseService.ssoToken)) {
-        //     headers[SSO_HEADER] = BaseService.ssoToken;
-        // }
+        if (utils.isString(BaseService.accessToken)) {
+            headers[OAUTH_HEADER] = OAUTH_PREFIX + BaseService.accessToken;
+        }
 
-         console.log(OAUTH_HEADER + ': Basic ' + btoa('Adobe:eoiuewf09fewo'));
+        if (utils.isString(BaseService.ssoToken)) {
+            headers[SSO_HEADER] = BaseService.ssoToken;
+        }
 
         let extend = utils.extend;
         extend(options, {
             headers: extend({}, options.headers, headers),
             timeout: 15000
         });
-
-        options.user = 'Adobe';
-        options.password = 'eoiuewf09fewo';
-        options.withCredentials = true;
 
         let url = options.url;
 
@@ -109,7 +103,6 @@ export default class BaseService {
     }
 
     handleError(error: async.AjaxError): void {
-        console.log(error);
         throw error.response;
     }
 

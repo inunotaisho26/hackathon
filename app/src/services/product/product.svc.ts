@@ -20,7 +20,7 @@ register.injectable('product-svc', ProductService);
 interface IProductBy {
     storeNumber?: number;
     maxResults?: number;
-    offest?: number;
+    offset?: number;
     priceFlag?: string;
 }
 
