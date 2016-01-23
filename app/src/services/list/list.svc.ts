@@ -2,7 +2,9 @@ import {async, register} from 'platypus';
 import BaseService from '../base/base.svc';
 
 export default class ListService extends BaseService {
-    api = '/user/list';
+    constructor() {
+        super('user/list');
+    }
 
     lists(): async.IThenable<models.IList> {
         return this.get();

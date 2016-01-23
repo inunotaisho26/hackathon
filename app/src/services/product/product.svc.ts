@@ -2,7 +2,9 @@ import {async, register} from 'platypus';
 import BaseService from '../base/base.svc';
 
 export default class ProductService extends BaseService {
-    protected api = 'product';
+    constructor() {
+        super('product');
+    }
 
     byKeyword(data: IProductByKeyword): async.IThenable<models.IProductList> {
         return this.get('keyword' + this.toQuery(data));

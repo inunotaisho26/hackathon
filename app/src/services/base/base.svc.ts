@@ -1,12 +1,13 @@
-import {async, debug, Utils} from 'platypus';
+import {async, debug, storage, Utils} from 'platypus';
 import {OAUTH_HEADER, OAUTH_PREFIX, SSO_HEADER} from '../../references/references';
 
 export default class BaseService {
     protected static _inject: any = {
         http: async.Http,
+        log: debug.Log,
         Promise: async.IPromise,
-        utils: Utils,
-        log: debug.Log
+        storage: storage.LocalStorage,
+        utils: Utils
     };
     protected static accessToken = 'QWRvYmU6ZW9pdWV3ZjA5ZmV3bw==';
     protected static host = 'https://api.lowes.com';
@@ -14,9 +15,10 @@ export default class BaseService {
     protected static apiKey = 'xfjtt93gs7yxs9rnph96v4c3';
 
     protected http: async.Http;
-    protected Promise: async.IPromise;
-    protected utils: Utils;
     protected log: debug.Log;
+    protected Promise: async.IPromise;
+    protected storage: storage.LocalStorage;
+    protected utils: Utils;
     protected api = '';
 
     constructor(api: string) {
