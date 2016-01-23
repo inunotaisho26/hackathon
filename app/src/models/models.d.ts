@@ -226,4 +226,13 @@ declare namespace models {
         tuesday: Array<number>;
         wednesday: Array<number>;
     }
+
+    interface ISpecification {
+        specs: Array<IKeyValue>;
+    }
+
+    interface IKeyValue {
+        Key: string;
+        Value: string;
+    }
 }
