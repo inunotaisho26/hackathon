@@ -35,7 +35,7 @@ declare namespace models {
 
     interface IListItems {
         pagingMetaData: IPagingMetaData;
-        list: Array<any>;
+        list: Array<IListItem>;
     }
 
     interface IListItem {

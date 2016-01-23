@@ -9,7 +9,7 @@ export default class BaseService {
         log: debug.Log
     };
     protected static accessToken = 'QWRvYmU6ZW9pdWV3ZjA5ZmV3bw==';
-    protected static host = 'http://api.lowes.com';
+    protected static host = 'https://api.lowes.com';
     protected static ssoToken = '';
     protected static apiKey = 'xfjtt93gs7yxs9rnph96v4c3';
 
