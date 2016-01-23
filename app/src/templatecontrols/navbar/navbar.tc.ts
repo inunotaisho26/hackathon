@@ -7,8 +7,48 @@ export default class NavbarTemplateControl extends ui.TemplateControl {
     hasOwnContext = true;
 
     context = {
-        Home: Home
+        selected: ''
     };
+
+    lastSelected = '';
+
+    onDrawerOpen() {
+        let context = this.context;
+        this.lastSelected = context.selected;
+        context.selected = 'menu';
+    }
+
+    onDrawerClose() {
+        if (this.lastSelected === 'menu') {
+            this.lastSelected = this.context.selected = '';
+            return;
+        }
+
+        this.context.selected = this.lastSelected;
+    }
+
+    navigate(selected: string) {
+        let context = this.context;
+
+        switch (selected) {
+            case 'menu':
+                this.lastSelected = context.selected;
+                context.selected = selected;
+                break;
+            case 'test':
+                context.selected = selected;
+                break;
+            case 'lorem':
+                context.selected = selected;
+                break;
+            case 'ipsum':
+                context.selected = selected;
+                break;
+            case 'lowes':
+                context.selected = selected;
+                break;
+        }
+    }
 }
 
-register.control('navbar', NavbarTemplateControl);
+register.control('navbar', NavbarTemplateControl, null, true);

@@ -41,7 +41,7 @@ export default class BaseViewControl extends ui.ViewControl {
     }
 
     protected _title(title: string): string {
-        let t = 'Website Name';
+        let t = 'Lowe\'s Grows';
 
         if (!this.utils.isEmpty(title)) {
             t = `${title} | ${t}`;

@@ -5,13 +5,46 @@
     [plat-control="navbar"] {
         height: @navbar-height;
 		position: absolute;
-		top: 0;
+		bottom: 0;
 		left: 0;
 		right: 0;
 		width: 100%;
 		z-index: 100;
-        background-color: @neutral-color;
+        background-color: @primary-color;
         .box-shadow(@box-shadow);
+
+        .item {
+            @border: 1px solid darken(@primary-color, 5%);
+            position: relative;
+            width: 20%;
+            float: left;
+            color: @white;
+            text-align: center;
+            line-height: 1.5 * @navbar-height;
+            font-weight: 100;
+
+            &:not(:first-child) {
+                border-left: @border;
+            }
+
+            & > i {
+                position: absolute;
+                top: 10%;
+                left: 0;
+                font-size: 130%;
+                width: 100%;
+                display: inline-block;
+            }
+
+            &.selected {
+                background-color: @secondary-color;
+
+                & + .item,
+                &:not(:first-child) {
+                    border-left-color: @secondary-color;
+                }
+            }
+        }
 
 		.navbar-logo-container {
 			height: 100%;
@@ -23,33 +56,34 @@
 			}
 		}
 
-        .navbar-menu-container {
-			float: right;
-			height: 100%;
-            margin-right: 3em;
-        }
-
 		.drawer-controller {
-            @controller-font-size: 2em;
-
-            position: relative;
-            float: right;
-            font-size: @controller-font-size;
             z-index: 100;
-            height: @navbar-height / @controller-font-size;
-            width: @navbar-height / (@controller-font-size - 0.5em);
+            height: @navbar-height;
 
             &::before {
                 content: "";
                 position: absolute;
-                top: 50%;
+                top: 20%;
                 left: 50%;
-                width: 1em;
-                height: 0.15em;
-                background: @primary-color;
-                .box-shadow(~'0 0.25em 0 0 @{primary-color}, 0 0.5em 0 0 @{primary-color}');
-                .translate-accelerate(-50%; -0.325em);
+                width: 70%;
+                height: 0.25em;
+                background: @white;
+                .box-shadow(~'0 0.5em 0 0 @{white}, 0 1em 0 0 @{white}');
+                .translate-accelerate(-50%;0);
             }
 		}
+
+        .my-lowes {
+            &::before {
+                font-size: 150%;
+                content: "my";
+                position: absolute;
+                top: 20%;
+                left: 0;
+                width: 100%;
+                display: inline-block;
+                line-height: 0;
+            }
+        }
     }
 }
