@@ -3,6 +3,66 @@
     #platui > #media;
 
     [plat-control="mylowes-vc"] {
+        padding: 1em;
 
+        .title {
+            font-size: 200%;
+            text-align: center;
+            color: @secondary-color;
+
+            .bold {
+                color: @primary-color;
+            }
+        }
+
+        .sign-in {
+            margin: 1em 0 0.25em;
+            font-size: 120%;
+        }
+
+        .sign-up {
+            font-size: 90%;
+        }
+
+        .login-form {
+            .forgot {
+                color: @primary-color;
+                font-size: 80%;
+                margin-top: 0.5em;
+            }
+
+            .save-email {
+                margin: 1em 0;
+                line-height: 1.8;
+            }
+        }
+
+        hr {
+            margin: 2em 0;
+        }
+
+        .plat-input.input-outline {
+            width: 100%;
+
+            input {
+                .border-radius(0);
+                font-weight: 100;
+            }
+
+            &.invalid {
+                input {
+                    border-color: @danger-color;
+                }
+            }
+        }
+
+        .plat-toggle {
+            float: right;
+        }
+
+        .plat-button {
+            .border-radius(0);
+            width: 100%;
+        }
     }
 }
