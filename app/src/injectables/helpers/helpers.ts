@@ -12,6 +12,10 @@ export default class Helpers {
     selectRoute(links: Array<ILink>, utils?: web.UrlUtils): void {
         let router = routing.Router.currentRouter(),
             routes: Array<string> = this.utils.map((link) => {
+                if (link.isUrl) {
+                    return link.view;
+                }
+
                 return router.generate(link.view);
             }, links),
             selectedIndex = -1;
@@ -20,10 +24,10 @@ export default class Helpers {
             utils = this.browser.urlUtils();
         }
 
-        let path = utils.pathname;
+        let path = this.trimSlashes(utils.pathname);
 
         routes.forEach((route, index) => {
-            if (path.indexOf(route) > -1) {
+            if (path === this.trimSlashes(route)) {
                 selectedIndex = index;
                 return true;
             }
@@ -36,6 +40,22 @@ export default class Helpers {
         }
 
         links[selectedIndex].selected = true;
+    }
+
+    private trimSlashes(str: string) {
+        if (!this.utils.isString(str)) {
+            return str;
+        }
+
+        if (str[0] === '/') {
+            str = str.slice(1);
+        }
+
+        if (str.length > 0 && str[str.length - 1] === '/') {
+            str = str.slice(0, -1);
+        }
+
+        return str;
     }
 }
 

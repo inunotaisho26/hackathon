@@ -1,11 +1,34 @@
 <plat-drawer plat-bind="visible">
 	<div class="drawer-container">
         <header>
-
+            <div class="row">
+                <div class="col-phn-8">
+                    <div class="now-shopping">CURRENT STORE</div>
+                    <div class="store-name">{{store.name}}</div>
+                </div>
+                <div class="col-phn-4">
+                    <plat-button class="change-store">Change Store</plat-button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-phn-12">
+                    <div class="store-status">{{store.status}}</div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-phn-6">
+                    <i class="fa fa-info"></i>
+                    <span>Store Info</span>
+                </div>
+                <div class="col-phn-6">
+                    <i class="fa fa-map-o"></i>
+                    <span>In-Store Map</span>
+                </div>
+            </div>
         </header>
 		<ul class="drawer-menu" plat-control="plat-foreach" plat-context="links">
 			<li class="{{selected ? 'selected' : ''}}">
-				<plat-link class="bold" plat-options="{ view: view }" plat-tap="dismiss">
+				<plat-link class="bold" plat-options="{ view: view, isUrl: isUrl }" plat-tap="dismiss">
                     <i class="fa fa-{{icon}}"></i>
                     <span>{{title}}</span>
                 </plat-link>

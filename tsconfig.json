@@ -37,7 +37,12 @@
         "app/src/templatecontrols/drawer/drawer.tc.ts",
         "app/src/templatecontrols/navbar/navbar.tc.ts",
         "app/src/viewcontrols/base/base.vc.ts",
+        "app/src/viewcontrols/cart/cart.vc.ts",
+        "app/src/viewcontrols/findstore/findstore.vc.ts",
+        "app/src/viewcontrols/help/help.vc.ts",
         "app/src/viewcontrols/home/home.vc.ts",
+        "app/src/viewcontrols/list/list.vc.ts",
+        "app/src/viewcontrols/mylowes/mylowes.vc.ts",
         "server/server.ts",
         "server/utils.ts"
     ]

@@ -1,18 +1,18 @@
-<plat-drawer-controller class="drawer-controller item{{selected === 'menu' ? ' selected' : ''}}" plat-tap="navigate('menu')">
+<plat-drawer-controller class="drawer-controller item{{menuSelected ? ' selected' : ''}}" plat-tap="onDrawerOpen">
     <span class="item-text">Menu</span>
 </plat-drawer-controller>
-<div class="item{{selected === 'home' ? ' selected' : ''}}" plat-tap="navigate('home')">
+<plat-link plat-options="{ view: links[0].view }" class="item{{links[0].selected ? ' selected' : ''}}" plat-tap="onDrawerClose">
     <i class="fa fa-home"></i>
     <span class="item-text">Home</span>
-</div>
-<div class="item{{selected === 'lorem' ? ' selected' : ''}}" plat-tap="navigate('lorem')">
+</plat-link>
+<plat-link plat-options="{ view: links[1].view }" class="item{{links[1].selected ? ' selected' : ''}}" plat-tap="onDrawerClose">
+    <i class="fa fa-list-ul"></i>
+    <span class="item-text">List</span>
+</plat-link>
+<plat-link plat-options="{ view: links[2].view }" class="item{{links[2].selected ? ' selected' : ''}}" plat-tap="onDrawerClose">
     <i class="fa fa-shopping-basket"></i>
-    <span class="item-text">Lorem</span>
-</div>
-<div class="item{{selected === 'ipsum' ? ' selected' : ''}}" plat-tap="navigate('ipsum')">
-    <i class="fa fa-paw"></i>
-    <span class="item-text">Ipsum</span>
-</div>
-<div class="my-lowes item{{selected === 'lowes' ? ' selected' : ''}}" plat-tap="navigate('lowes')">
+    <span class="item-text">Cart</span>
+</plat-link>
+<plat-link plat-options="{ view: links[3].view }" class="my-lowes item{{links[3].selected ? ' selected' : ''}}" plat-tap="onDrawerClose">
     <span class="item-text">Lowe's</span>
-</div>
+</plat-link>

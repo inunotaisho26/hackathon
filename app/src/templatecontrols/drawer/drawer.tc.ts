@@ -1,7 +1,8 @@
 import {events, register, routing, ui, web} from 'platypus';
-import Home from '../../viewcontrols/home/home.vc';
 import Helpers from '../../injectables/helpers/helpers';
 import Navbar from '../navbar/navbar.tc';
+import FindStore from '../../viewcontrols/findstore/findstore.vc';
+import Help from '../../viewcontrols/help/help.vc';
 
 export default class DrawerTemplateControl extends ui.TemplateControl {
     replaceWith = 'nav';
@@ -10,8 +11,14 @@ export default class DrawerTemplateControl extends ui.TemplateControl {
     context = {
         visible: false,
         links: [
-            { title: 'Home', view: Home, icon: 'home' }
-        ]
+            { title: 'Find a Store', view: FindStore, icon: 'map-marker' },
+            { title: 'Credit Card', view: 'https://lowes.mycreditcard.mobi', icon: 'credit-card', isUrl: true },
+            { title: 'Help', view: Help, icon: 'question-circle' }
+        ],
+        store: {
+            name: 'S.E. Austin Lowe\'s',
+            status: 'Open today until 9:00 PM'
+        }
     };
 
     constructor(private helpers: Helpers, private browser: web.Browser, private navbar: Navbar) {

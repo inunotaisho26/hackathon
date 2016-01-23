@@ -1,7 +1,10 @@
 import {App, events, register, routing, web, Compat, Utils, Window} from 'platypus';
-// add front end API
-// import {repositories} from '../injectables/api/api';
-import HomeViewControl from '../viewcontrols/home/home.vc';
+import Home from '../viewcontrols/home/home.vc';
+import List from '../viewcontrols/list/list.vc';
+import Cart from '../viewcontrols/cart/cart.vc';
+import MyLowes from '../viewcontrols/mylowes/mylowes.vc';
+import FindStore from '../viewcontrols/findstore/findstore.vc';
+import Help from '../viewcontrols/help/help.vc';
 
 export default class MyApp extends App {
     constructor(
@@ -14,7 +17,12 @@ export default class MyApp extends App {
         super();
 
         router.configure([
-            { pattern: '', view: HomeViewControl }
+            { pattern: '', view: Home },
+            { pattern: 'list', view: List },
+            { pattern: 'cart', view: Cart },
+            { pattern: 'mylowes', view: MyLowes },
+            { pattern: 'findstore', view: FindStore },
+            { pattern: 'help', view: Help }
         ]);
 
         if (!compat.ANDROID) {

@@ -6,7 +6,7 @@
         background-color: @primary-color;
 
         @item-height: @navbar-height;
-        @border: 1px solid darken(@primary-color, 10%);
+        @border: 1px solid darken(@primary-color, 5%);
 
 		& > .drawer-container {
 			height: 100%;
@@ -15,7 +15,72 @@
 
             & > header {
                 height: 2 * @item-height;
-                border-bottom: @border;
+                padding: 0.5em 0.75em;
+                font-weight: 100;
+
+                .row {
+                    font-size: 80%;
+
+                    &:last-child {
+                        & > div {
+                            padding: 1em 0;
+                        }
+                    }
+
+                    .now-shopping,
+                    .store-name {
+                        margin-bottom: 0.2em;
+                    }
+
+                    .store-name,
+                    .store-status {
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        white-space: nowrap;
+                        padding-right: 1em;
+                    }
+
+                    .now-shopping {
+                        font-size: 80%;
+                    }
+
+                    .store-name {
+                        font-weight: 500;
+                    }
+
+                    .store-status {
+                        margin-bottom: 2.5em;
+                    }
+
+                    i.fa {
+                        margin-right: 0.5em;
+
+                        &.fa-info {
+                            @diam: 1.25em;
+                            .border-radius(50%);
+                            border: 1px solid @white;
+                            width: @diam;
+                            height: @diam;
+                            line-height: @diam;
+                            display: inline-block;
+                            text-align: center;
+                        }
+                    }
+
+                    .plat-button {
+                        width: 100%;
+                        height: 1.75em;
+                        padding: 0.25em 0;
+
+                        & > span {
+                            font-size: 80%;
+                        }
+
+                        @button-color: lighten(desaturate(@primary-color, 10%), 15%);
+                        #platui > #Button > .plat-button(background-color; @button-color);
+                        #platui > #Button > .plat-button(border-color; @button-color);
+                    }
+                }
             }
 
 			& .drawer-menu {
@@ -28,30 +93,46 @@
 					width: 100%;
 					height: @item-height;
                     margin: 0;
+                    border-top: @border;
+
+                    &:last-child {
+                        border-bottom: @border;
+                    }
 
 					& a {
                         @link-size: 1.5em;
+
                         font-size: @link-size;
+                        font-weight: 100;
 						display: inline-block;
 						height: @item-height / @link-size;
 						line-height: @item-height / @link-size;
 						width: 100%;
-						padding: 0 @link-size;
+						padding-right: 1em;
 						cursor: pointer;
                         color: @white;
 
                         & > i {
-                            margin-right: 0.5em;
+                            display: inline-block;
+                            width: 2.25em;
+                            text-align: center;
                         }
 					}
 
 					&:active, &.selected {
-						background-color: lighten(@primary-color, 20%);
-					}
+						background-color: @secondary-color;
+                        border-top-color: @secondary-color;
 
-					// &:last-child {
-                    //     .box-shadow(@box-shadow);
-					// }
+                        &:not(:last-child) {
+                            & + li {
+                                border-top-color: @secondary-color;
+                            }
+                        }
+
+                        &:last-child {
+                            border-bottom-color: @secondary-color;
+                        }
+					}
 				}
 			}
 		}
