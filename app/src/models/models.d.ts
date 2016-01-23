@@ -18,7 +18,7 @@ declare namespace models {
         x_serviceStoreNumber: number;
     }
 
-    interface IList extends Array<{
+    interface IList {
         id: number;
         profileId: number;
         status: string;
@@ -31,7 +31,7 @@ declare namespace models {
         defaultList: boolean;
         entitySubType: string;
         entityType: string;
-    }> {}
+    }
 
     interface IListItems {
         pagingMetaData: IPagingMetaData;
