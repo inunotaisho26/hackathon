@@ -5,6 +5,7 @@ import 'platypusui';
 
 import './app/app';
 
+import './injectables/converters/converters';
 import './injectables/helpers/helpers';
 import './injectables/scroller/scroller';
 
