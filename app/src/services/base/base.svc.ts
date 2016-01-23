@@ -1,5 +1,5 @@
 import {async, debug, Utils} from 'platypus';
-import {OAUTH_HEADER, OAUTH_PREFIX} from '../../references/references';
+import {OAUTH_HEADER, OAUTH_PREFIX, SSO_HEADER} from '../../references/references';
 
 export default class BaseService {
     protected static _inject: any = {
@@ -65,6 +65,10 @@ export default class BaseService {
 
         if (utils.isString(BaseService.accessToken)) {
             headers[OAUTH_HEADER] = OAUTH_PREFIX + BaseService.accessToken;
+        }
+
+        if(utils.isString(BaseService.ssoToken)) {
+            headers[SSO_HEADER] = BaseService.ssoToken;
         }
 
         let extend = utils.extend;
