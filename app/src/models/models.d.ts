@@ -218,6 +218,7 @@ declare namespace models {
     }
 
     interface IHours {
+        [x: string]: Array<number>;
         friday: Array<number>;
         monday: Array<number>;
         saturday: Array<number>;

@@ -30,10 +30,6 @@ export default class BaseViewControl extends ui.ViewControl {
         }, 50);
     }
 
-    loaded(): void {
-        this.ready();
-    }
-
     protected ready(): void {
         this.utils.defer(() => {
             (<any>window).prerenderReady = true;
@@ -69,5 +65,3 @@ export default class BaseViewControl extends ui.ViewControl {
         return this.head.fbType(type);
     }
 }
-
-register.control('head', ui.controls.Head, null, true);
