@@ -6,12 +6,13 @@ export default class CustomerService extends BaseService {
         super('customer/login');
     }
 
-    login(id?: string, password?: string): async.IThenable<void> {
-        let ssoToken = this.storage.getItem<string>('sso');
+    login(id?: string, password?: string): async.IThenable<models.ICustomer> {
+        let ssoToken = this.storage.getItem<string>('sso'),
+            c = this.storage.getItem<string>('customer');
 
         if (this.utils.isString(ssoToken)) {
             BaseService.ssoToken = ssoToken;
-            return this.Promise.resolve();
+            return this.Promise.resolve(JSON.parse(c));
         }
 
         return this.post({
@@ -22,6 +23,9 @@ export default class CustomerService extends BaseService {
 
             this.storage.setItem('sso', customer.SSOToken);
             this.storage.setItem('store', customer.store);
+            this.storage.setItem('customer', JSON.stringify(customer));
+
+            return customer;
         });
     }
 
