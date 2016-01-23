@@ -1,5 +1,9 @@
-import {register, ui} from 'platypus';
+import {register, ui, events, web} from 'platypus';
+import Helpers from '../../injectables/helpers/helpers';
 import Home from '../../viewcontrols/home/home.vc';
+import List from '../../viewcontrols/list/list.vc';
+import Cart from '../../viewcontrols/cart/cart.vc';
+import MyLowes from '../../viewcontrols/mylowes/mylowes.vc';
 
 export default class NavbarTemplateControl extends ui.TemplateControl {
     replaceWith = 'nav';
@@ -7,52 +11,35 @@ export default class NavbarTemplateControl extends ui.TemplateControl {
     hasOwnContext = true;
 
     context = {
-        selected: ''
+        menuSelected: false,
+        links: <Array<ILink>>[
+            { view: Home },
+            { view: List },
+            { view: Cart },
+            { view: MyLowes }
+        ]
     };
 
-    lastSelected = '';
+    constructor(private helpers: Helpers) {
+        super();
+
+        this.on('navigated', (ev: events.DispatchEvent, utils: web.UrlUtils) => {
+            this.context.menuSelected = false;
+            this.helpers.selectRoute(this.context.links, utils);
+        });
+
+        this.helpers.selectRoute(this.context.links);
+    }
 
     onDrawerOpen() {
-        let context = this.context;
-        if (context.selected === 'menu') {
-            return;
-        }
-
-        this.lastSelected = context.selected;
-        context.selected = 'menu';
+        this.context.menuSelected = true;
     }
 
     onDrawerClose() {
-        if (this.lastSelected === 'menu') {
-            this.lastSelected = this.context.selected = '';
-            return;
-        }
-
-        this.context.selected = this.lastSelected;
-    }
-
-    navigate(selected: string) {
-        let context = this.context;
-
-        switch (selected) {
-            case 'menu':
-                this.lastSelected = context.selected;
-                context.selected = selected;
-                break;
-            case 'home':
-                context.selected = selected;
-                break;
-            case 'lorem':
-                context.selected = selected;
-                break;
-            case 'ipsum':
-                context.selected = selected;
-                break;
-            case 'lowes':
-                context.selected = selected;
-                break;
-        }
+        this.context.menuSelected = false;
     }
 }
 
-register.control('navbar', NavbarTemplateControl, null, true);
+register.control('navbar', NavbarTemplateControl, [
+    Helpers
+], true);
