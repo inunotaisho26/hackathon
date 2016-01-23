@@ -23,8 +23,10 @@ export default class HomeViewControl extends BaseViewControl {
         }).then((result) => {
             return this.link.requiredItems(result.productList[0].links[5].href);
         }).then((result) => {
+            console.log('success');
             console.log(JSON.stringify(result, null, 2));
         }).catch((e) => {
+            console.log('error');
             console.log(JSON.stringify(e, null, 2));
         });
     }
