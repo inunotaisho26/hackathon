@@ -23,6 +23,7 @@
         "app/src/models/models.d.ts",
         "app/src/app/app.ts",
         "app/src/injectables/converters/converters.ts",
+        "app/src/injectables/data/data.ts",
         "app/src/injectables/geolocation/geolocation.ts",
         "app/src/injectables/helpers/helpers.ts",
         "app/src/injectables/scroller/scroller.ts",
