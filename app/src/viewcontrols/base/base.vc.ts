@@ -4,11 +4,6 @@ import Scroller from '../../injectables/scroller/scroller';
 
 export default class BaseViewControl extends ui.ViewControl {
     context: any = {};
-    protected title: string = '';
-    protected description: string;
-    protected images: Array<string> = [];
-    protected videos: Array<string> = [];
-    protected ogType: string;
     protected helpers: Helpers = acquire(Helpers);
     protected scroller: Scroller = acquire(Scroller);
 

@@ -1,15 +1,18 @@
 <header class="hero">
     <section class="hero-caption">
         <div class="container">
-            <h1 class="hero-title capitalize">Hero Header</h1>
-            <p class="hero-description uppercase bold">This is the description for the hero</p>
+            <h1 class="hero-title uppercase">Welcome{{!user ? '' : ' ' + user.firstname}}!</h1>
+            <p class="hero-description uppercase">Here are a few great recommendations based on your current {{!user ? 'location' : 'profile'}}.</p>
+            <plat-link class="button-link" plat-options="{ view: MyLowes }">My Lowe's</plat-link>
         </div>
     </section>
     <section class="overlay"></section>
 </header>
 <plat-foreach class="content" plat-context="sections">
     <div class="section">
-        <header class="section-header"></header>
+        <header class="section-header">
+
+        </header>
         <plat-foreach plat-context="products">
 
         </plat-foreach>

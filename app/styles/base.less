@@ -21,6 +21,19 @@
         .box-sizing(inherit);
     }
 
+    .button-link {
+        display: inline-block;
+        color: @white;
+        border: 1px solid @white;
+        background-color: @transparent;
+        padding: 0.5em 1em;
+
+        &:active {
+            background-color: @white;
+            color: @text-grey;
+        }
+    }
+
     .quote {
         &::before {
             content: '\201C';
