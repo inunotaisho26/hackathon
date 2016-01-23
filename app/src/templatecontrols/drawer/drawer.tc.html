@@ -1,0 +1,9 @@
+<plat-drawer plat-options="{ position: 'right' }" plat-bind="visible">
+	<div class="drawer-container">
+		<ul class="drawer-menu" plat-control="plat-foreach" plat-context="links">
+			<li class="{{selected ? 'selected' : ''}}">
+				<plat-link class="bold" plat-options="{ view: view }">{{title}}</plat-link>
+			</li>
+		</ul>
+	</div>
+</plat-drawer>

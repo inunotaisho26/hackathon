@@ -1,0 +1,103 @@
+& {
+    /*
+     * Embedded Fonts and Typography declarations/helpers
+     */
+     #platui > #variables;
+
+    .capitalize {
+        text-transform: capitalize;
+    }
+
+    .uppercase {
+        text-transform: uppercase;
+    }
+
+    .lowercase {
+        text-transform: lowercase;
+    }
+
+    .bold {
+        font-weight: 600;
+    }
+
+    .light {
+        font-weight: 200;
+    }
+
+    .white {
+        color: @white;
+    }
+
+    .black {
+        color: @black;
+    }
+
+    .primary {
+        color: @primary-color;
+    }
+
+    .secondary {
+        color: @secondary-color;
+    }
+
+    .danger {
+        color: @danger-color;
+    }
+
+    .success {
+        color: @success-color;
+    }
+
+    .pointer {
+        cursor: pointer;
+    }
+
+    .text-right {
+        text-align: right !important;
+    }
+
+    .text-left {
+        text-align: left !important;
+    }
+
+    .text-center {
+        text-align: center !important;
+    }
+
+    /// <font-family>
+    @font-face {
+        font-family: @font-family;
+        src: url(~'@{font-bold}.eot');
+        src: url(~'@{font-bold}.eot?#iefix') format('embedded-opentype'),
+             url(~'@{font-bold}.woff2') format('woff2'),
+             url(~'@{font-bold}.woff') format('woff'),
+             url(~'@{font-bold}.ttf') format('truetype'),
+             url(~'@{font-bold}.svg#@{font-family}bold') format('svg');
+        font-weight: 700;
+        font-style: normal;
+    }
+
+    @font-face {
+        font-family: @font-family;
+        src: url(~'@{font-light}.eot');
+        src: url(~'@{font-light}.eot?#iefix') format('embedded-opentype'),
+             url(~'@{font-light}.woff2') format('woff2'),
+             url(~'@{font-light}.woff') format('woff'),
+             url(~'@{font-light}.ttf') format('truetype'),
+             url(~'@{font-light}.svg#@{font-family}light') format('svg');
+        font-weight: 200;
+        font-style: normal;
+    }
+
+    @font-face {
+        font-family: @font-family;
+        src: url(~'@{font-regular}.eot');
+        src: url(~'@{font-regular}.eot?#iefix') format('embedded-opentype'),
+             url(~'@{font-regular}.woff2') format('woff2'),
+             url(~'@{font-regular}.woff') format('woff'),
+             url(~'@{font-regular}.ttf') format('truetype'),
+             url(~'@{font-regular}.svg#@{font-family}regular') format('svg');
+        font-weight: 400;
+        font-style: normal;
+    }
+}

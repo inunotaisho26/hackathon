@@ -1,0 +1,14 @@
+& {
+    #platui > #mixins;
+    #platui > #media;
+
+    [plat-control="home-vc"] {
+        & .hero {
+            .background-cover(@home-hero);
+
+            // it is important to set a background color that closely represents the image background color
+            // this allows for a graceful transition while the image loads
+            background-color: fadeout(@black, 50%);
+        }
+    }
+}

@@ -1,0 +1,212 @@
+// Global Default Styles
+& {
+	#platui > #mixins;
+    #platui > #media;
+	#platui > #variables;
+
+    *:not(img):not(.plat-animated-child):not([plat-control="drawer"]) {
+        .translateZ(0);
+    }
+
+    html, body {
+        .box-sizing(border-box);
+    }
+
+    h1, h2, h3, h4, h5, h6, p, blockquote {
+        font-family: @font-serif;
+    }
+
+    *, *::before, *::after {
+        .box-sizing(inherit);
+    }
+
+    .quote {
+        &::before {
+            content: '\201C';
+        }
+        &::after {
+            content: '\201D';
+        }
+    }
+
+    .container {
+        .container();
+    }
+
+    .fill {
+        .fill();
+    }
+
+    .plat-viewcontrol {
+        height: 100%;
+    }
+
+    .no-overflow {
+        overflow: hidden;
+    }
+
+    .no-wrap {
+        white-space: nowrap;
+    }
+
+    .scroll-y {
+        .scroll(y);
+    }
+
+    .float-right {
+        float: right;
+    }
+
+    .float-left {
+        float: left;
+    }
+
+    .inline-block {
+        display: inline-block;
+    }
+
+    .no-padding {
+        padding: 0;
+    }
+
+    .no-padding-lr {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .no-padding-tb {
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+
+    .no-margin {
+        margin: 0;
+    }
+
+    .no-margin-lr {
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    .no-margin-tb {
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+
+    .centered-ring {
+        display: block;
+        margin: 0 auto;
+    }
+
+    .v-bottom {
+        vertical-align: bottom;
+    }
+
+    .v-middle {
+        vertical-align: middle;
+    }
+
+    .radius {
+        .border-radius(@global-border-radius);
+    }
+
+    .clearfix {
+        zoom: 1; /* ie 6/7 */
+
+        &::before, &::after {
+            content: "";
+            display: table;
+        }
+
+        &::after {
+            clear: both;
+        }
+    }
+
+    .full-page {
+        .fill();
+        position: relative;
+        padding-top: @navbar-height;
+        background-color: @white;
+    }
+
+    .body {
+        .fill();
+
+        & > [plat-control="plat-viewport"] {
+            height: auto;
+            min-height: 100%;
+        }
+    }
+
+    .phb({
+		html, body {
+			font-size: @default-font-size + 1px;
+		}
+	});
+
+    .tab({
+		html, body {
+			font-size: @default-font-size + 2px;
+		}
+	});
+
+    .dsk({
+		html, body {
+			font-size: @default-font-size + 3px;
+		}
+	});
+
+    .hd({
+		html, body {
+			font-size: @default-font-size + 4px;
+		}
+	});
+
+    .xhd({
+		html, body {
+			font-size: @default-font-size + 5px;
+		}
+	});
+
+    .hero {
+        overflow: hidden;
+        height: 50em;
+        height: 100vh;
+        .calc(height; ~'100vh - @{navbar-height}');
+        background-origin: border-box;
+
+        .hero-caption {
+            .fill();
+            position: absolute;
+            top: 0;
+            z-index: 100;
+
+            .container {
+                position: relative;
+                top: 45%;
+                .translate-accelerate(0, -55%);
+                text-align: center;
+                color: @white;
+
+                .hero-title {
+                    margin-bottom: 0.2em;
+                }
+
+                .hero-description {
+                    font-size: 120%;
+                    letter-spacing: 0.25em;
+                }
+            }
+        }
+
+        .overlay {
+            .fill();
+            position: absolute;
+            top: 0;
+
+            background: @black;
+            opacity: 0.5;
+        }
+    }
+}

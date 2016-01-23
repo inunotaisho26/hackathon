@@ -1,0 +1,18 @@
+.background-cover(@url: '') {
+    background-image: url(@url);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+}
+
+.vertical-center() {
+	position: relative;
+	top: 50%;
+	#platui > #mixins > .translate-accelerate(0, -50%);
+}
+
+.container(@width: @container-width) {
+	max-width: @width;
+	padding: 0 @container-padding;
+	margin: 0 auto;
+}

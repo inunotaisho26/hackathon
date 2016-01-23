@@ -1,0 +1,76 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="io.platypi.website" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>Website</name>
+    <description>A Platypi CLI cordova app</description>
+    <author email="support@platypi.io" href="https://platypi.io">Platypi Team</author>
+    <content src="index.html" />
+    <access origin="*" />
+    <preference name="Orientation" value="portrait" />
+    <preference name="Fullscreen" value="true" />
+    <preference name="KeyboardShrinksView" value="true" />
+    <preference name="SplashScreenDelay" value="3000" />
+    <preference name="SplashScreen" value="screen" />
+    <preference name="StatusBarOverlaysWebView" value="false" />
+    <preference name="android-windowSoftInputMode" value="stateVisible|adjustResize" />
+    <preference name="DisallowOverscroll" value="true" />
+    <preference name="android-targetSdkVersion" value="22" />
+    <preference name="android-minSdkVersion" value="16" />
+    <allow-intent href="http://*/*" />
+    <allow-intent href="https://*/*" />
+    <allow-intent href="tel:*" />
+    <allow-intent href="sms:*" />
+    <allow-intent href="mailto:*" />
+    <allow-intent href="geo:*" />
+    <allow-intent href="maps:*" />
+    <platform name="android">
+        <allow-intent href="market:*" />
+        <icon density="hdpi" src="res/platform/android/res/drawable-hdpi/appicon.png" />
+        <icon density="ldpi" src="res/platform/android/res/drawable-ldpi/appicon.png" />
+        <icon density="mdpi" src="res/platform/android/res/drawable-mdpi/appicon.png" />
+        <icon density="xhdpi" src="res/platform/android/res/drawable-xhdpi/appicon.png" />
+        <icon density="xxhdpi" src="res/platform/android/res/drawable-xxhdpi/appicon.png" />
+        <icon density="xxxhdpi" src="res/platform/android/res/drawable-xxxhdpi/appicon.png" />
+        <splash density="port-hdpi" src="res/app/assets/android/images/res-long-port-hdpi/default.png" />
+        <splash density="port-ldpi" src="res/app/assets/android/images/res-long-port-ldpi/default.png" />
+        <splash density="port-mdpi" src="res/app/assets/android/images/res-long-port-mdpi/default.png" />
+        <splash density="port-xhdpi" src="res/app/assets/android/images/res-long-port-xhdpi/default.png" />
+        <splash density="port-xxhdpi" src="res/app/assets/android/images/res-long-port-xxhdpi/default.png" />
+        <splash density="port-xxxhdpi" src="res/app/assets/android/images/res-long-port-xxxhdpi/default.png" />
+    </platform>
+    <platform name="ios">
+        <allow-intent href="itms:*" />
+        <allow-intent href="itms-apps:*" />
+        <icon height="180" src="res/app/assets/iphone/appicon-60@3x.png" width="180" />
+        <icon height="60" src="res/app/assets/iphone/appicon-60.png" width="60" />
+        <icon height="120" src="res/app/assets/iphone/appicon-60@2x.png" width="120" />
+        <icon height="76" src="res/app/assets/iphone/appicon-76.png" width="76" />
+        <icon height="152" src="res/app/assets/iphone/appicon-76@2x.png" width="152" />
+        <icon height="40" src="res/app/assets/iphone/appicon-Small-40.png" width="40" />
+        <icon height="80" src="res/app/assets/iphone/appicon-Small-40@2x.png" width="80" />
+        <icon height="57" src="res/app/assets/iphone/appicon.png" width="57" />
+        <icon height="114" src="res/app/assets/iphone/appicon@2x.png" width="114" />
+        <icon height="72" src="res/app/assets/iphone/appicon-72.png" width="72" />
+        <icon height="144" src="res/app/assets/iphone/appicon-72@2x.png" width="144" />
+        <icon height="29" src="res/app/assets/iphone/appicon-Small.png" width="29" />
+        <icon height="58" src="res/app/assets/iphone/appicon-Small@2x.png" width="58" />
+        <icon height="87" src="res/app/assets/iphone/appicon-Small@3x.png" width="87" />
+        <icon height="50" src="res/app/assets/iphone/appicon-Small-50.png" width="50" />
+        <icon height="100" src="res/app/assets/iphone/appicon-Small-50@2x.png" width="100" />
+        <splash height="480" src="res/app/assets/iphone/Default.png" width="320" />
+        <splash height="960" src="res/app/assets/iphone/Default@2x.png" width="640" />
+        <splash height="1136" src="res/app/assets/iphone/Default-568h@2x.png" width="640" />
+        <splash height="1334" src="res/app/assets/iphone/Default-667h@2x.png" width="750" />
+        <splash height="1024" src="res/app/assets/iphone/Default-Portrait.png" width="768" />
+        <splash height="2048" src="res/app/assets/iphone/Default-Portrait@2x.png" width="1536" />
+        <splash height="2208" src="res/app/assets/iphone/Default-Portrait-736h@3x.png" width="1242" />
+    </platform>
+    <engine name="android" spec="^4.0.2" />
+    <plugin name="cordova-plugin-splashscreen" spec="^2.1.0" />
+    <plugin name="cordova-plugin-network-information" spec="^1.0.1" />
+    <plugin name="cordova-plugin-crosswalk-webview" spec="^1.2.0" />
+    <plugin name="cordova-plugin-whitelist" spec="^1.0.0" />
+    <preference name="xwalkVersion" value="16+" />
+    <preference name="xwalkCommandLine" value="--disable-pull-to-refresh-effect" />
+    <preference name="xwalkMode" value="embedded" />
+    <preference name="xwalkMultipleApk" value="true" />
+</widget>

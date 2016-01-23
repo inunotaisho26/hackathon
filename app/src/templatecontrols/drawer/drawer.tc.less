@@ -1,0 +1,65 @@
+& {
+	#platui > #mixins;
+    #platui > #variables;
+
+	.plat-drawer {
+		background-color: lighten(@neutral-color, 25%);
+
+        @item-height: @navbar-height;
+
+		& > .drawer-container {
+			height: 100%;
+			width: 100%;
+			position: relative;
+
+            /// use this for setting a background for the drawer
+			&:after {
+				z-index: -1;
+				content: '';
+				position: absolute;
+				top: 0;
+				bottom: 0;
+				left: 0;
+				right: 0;
+				background-image: url(@navbar-logo);
+				background-size: 90%;
+				background-position: 50% 95%;
+				background-repeat: no-repeat;
+				opacity: 0.05;
+			}
+
+			& .drawer-menu {
+				z-index: 10;
+				margin: 0;
+				padding: 0;
+				list-style: none;
+
+				& li {
+					width: 100%;
+					height: @item-height;
+                    margin: 0;
+					border-top: 1px solid darken(@neutral-color, 5%);
+
+					& a {
+                        @link-size: 1.5em;
+                        font-size: @link-size;
+						display: inline-block;
+						height: @item-height / @link-size;
+						line-height: @item-height / @link-size;
+						width: 100%;
+						padding: 0 @link-size;
+						cursor: pointer;
+					}
+
+					&:active, &.selected {
+						background-color: fadeout(@neutral-color, 50%);
+					}
+
+					&:last-child {
+                        .box-shadow(@box-shadow);
+					}
+				}
+			}
+		}
+	}
+}

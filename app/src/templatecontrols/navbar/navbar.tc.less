@@ -1,0 +1,55 @@
+& {
+    #platui > #mixins;
+    #platui > #media;
+
+    [plat-control="navbar"] {
+        height: @navbar-height;
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		width: 100%;
+		z-index: 100;
+        background-color: @neutral-color;
+        .box-shadow(@box-shadow);
+
+		.navbar-logo-container {
+			height: 100%;
+            float: left;
+
+			.navbar-logo {
+				height: @navbar-height - 0.5em;
+                padding: 0.5em 0 0 1em;
+			}
+		}
+
+        .navbar-menu-container {
+			float: right;
+			height: 100%;
+            margin-right: 3em;
+        }
+
+		.drawer-controller {
+            @controller-font-size: 2em;
+
+            position: relative;
+            float: right;
+            font-size: @controller-font-size;
+            z-index: 100;
+            height: @navbar-height / @controller-font-size;
+            width: @navbar-height / (@controller-font-size - 0.5em);
+
+            &::before {
+                content: "";
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                width: 1em;
+                height: 0.15em;
+                background: @primary-color;
+                .box-shadow(~'0 0.25em 0 0 @{primary-color}, 0 0.5em 0 0 @{primary-color}');
+                .translate-accelerate(-50%; -0.325em);
+            }
+		}
+    }
+}

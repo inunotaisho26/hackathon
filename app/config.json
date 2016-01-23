@@ -1,0 +1,8 @@
+{
+    "prerender": false,
+    "https": false,
+    "xframe": "SAMEORIGIN",
+    "csp": {
+        
+    }
+}
