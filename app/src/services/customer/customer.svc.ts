@@ -33,6 +33,4 @@ export default class CustomerService extends BaseService {
     }
 }
 
-register.injectable('customer-svc', CustomerService, [
-    storage.LocalStorage
-]);
+register.injectable('customer-svc', CustomerService);

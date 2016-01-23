@@ -10,7 +10,7 @@ export default class BaseService {
         utils: Utils
     };
     protected static accessToken = 'QWRvYmU6ZW9pdWV3ZjA5ZmV3bw==';
-    protected static host = 'https://api.lowes.com';
+    protected static host = 'http://api.lowes.com';
     protected static ssoToken = '';
     protected static apiKey = 'xfjtt93gs7yxs9rnph96v4c3';
 
@@ -24,6 +24,10 @@ export default class BaseService {
     constructor(api: string) {
         if (!this.utils.isString(api) || api.length === 0) {
             return;
+        }
+
+        if (api[0] !== '/') {
+            api = '/' + api;
         }
 
         this.api = api + '/';
@@ -65,13 +69,15 @@ export default class BaseService {
 
         let headers = <any>{};
 
-        if (utils.isString(BaseService.accessToken)) {
-            headers[OAUTH_HEADER] = OAUTH_PREFIX + BaseService.accessToken;
-        }
+        // if (utils.isString(BaseService.accessToken)) {
+        //     headers[OAUTH_HEADER] = OAUTH_PREFIX + BaseService.accessToken;
+        // }
+        //  headers[OAUTH_HEADER] = 'Basic ' + btoa('developerevent:L0wesEvent!');
+        // if (utils.isString(BaseService.ssoToken)) {
+        //     headers[SSO_HEADER] = BaseService.ssoToken;
+        // }
 
-        if(utils.isString(BaseService.ssoToken)) {
-            headers[SSO_HEADER] = BaseService.ssoToken;
-        }
+         console.log(OAUTH_HEADER + ': Basic ' + btoa('Adobe:eoiuewf09fewo'));
 
         let extend = utils.extend;
         extend(options, {
@@ -79,9 +85,13 @@ export default class BaseService {
             timeout: 15000
         });
 
+        options.user = 'Adobe';
+        options.password = 'eoiuewf09fewo';
+        options.withCredentials = true;
+
         let url = options.url;
 
-        if(url.indexOf('?') > -1) {
+        if (url.indexOf('?') > -1) {
             url += '&';
         } else {
             url += '?'
@@ -99,6 +109,7 @@ export default class BaseService {
     }
 
     handleError(error: async.AjaxError): void {
+        console.log(error);
         throw error.response;
     }
 
@@ -126,7 +137,7 @@ export default class BaseService {
             return key + '=' + value;
         }, query).join('&');
 
-        if(!utils.isEmpty(q)) {
+        if (!utils.isEmpty(q)) {
             q = '?' + q;
         }
 

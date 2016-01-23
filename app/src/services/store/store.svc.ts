@@ -15,19 +15,22 @@ export default class StoreService extends BaseService {
 
     byStoreNumber(storeNumber: string): async.IThenable<models.ILocation> {
         return this.get(this.toQuery({
-            query: storeNumber
+            query: storeNumber,
+            maxResults: 1
         })).then(this.one);
     }
 
     byLatLong(lat: string | number, long: string | number): async.IThenable<models.ILocation> {
         return this.get(this.toQuery({
-            query: lat + ',' + long
+            query: lat + ',' + long,
+            maxResults: 1
         })).then(this.one);
     }
 
     byZip(zip: string): async.IThenable<models.ILocation> {
         return this.get(this.toQuery({
-            query: zip
+            query: zip,
+            maxResults: 1
         })).then(this.one);
     }
 
