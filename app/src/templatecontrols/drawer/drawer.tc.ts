@@ -1,4 +1,4 @@
-import {events, register, routing, ui, web} from 'platypus';
+import {events, register, routing, ui, web, Window, Compat} from 'platypus';
 import Helpers from '../../injectables/helpers/helpers';
 import Navbar from '../navbar/navbar.tc';
 import FindStore from '../../viewcontrols/findstore/findstore.vc';
@@ -14,14 +14,14 @@ export default class DrawerTemplateControl extends ui.TemplateControl {
         visible: false,
         links: [
             { title: 'Find a Store', view: FindStore, icon: 'map-marker' },
-            { title: 'Credit Card', view: 'https://lowes.mycreditcard.mobi', icon: 'credit-card', isUrl: true },
+            { title: 'Credit Card', view: <string>null, icon: 'credit-card', isUrl: true },
             { title: 'Help', view: Help, icon: 'question-circle' }
         ],
         store: <models.ILocation>null,
         status: ''
     };
 
-    constructor(private helpers: Helpers, private browser: web.Browser, private navbar: Navbar) {
+    constructor(private helpers: Helpers, private browser: web.Browser, private navbar: Navbar, private window: Window, private compat: Compat) {
         super();
 
         this.on('navigated', (ev: events.DispatchEvent, utils: web.UrlUtils) => {
@@ -61,7 +61,13 @@ export default class DrawerTemplateControl extends ui.TemplateControl {
         context.status = this.createStatus(context.store);
     }
 
-    dismiss(ev: ui.IGestureEvent) {
+    navigate(link: ILink, ev: ui.IGestureEvent) {
+        if (link.view === null) {
+            this.context.visible = false;
+            this.window.open('https://lowes.mycreditcard.mobi', this.compat.cordova ? '_system' : '_blank');
+            return;
+        }
+
         let target = <HTMLAnchorElement>ev.currentTarget,
             url = this.browser.url();
 
@@ -118,5 +124,7 @@ export default class DrawerTemplateControl extends ui.TemplateControl {
 register.control('drawer', DrawerTemplateControl, [
     Helpers,
     web.Browser,
-    Navbar
+    Navbar,
+    Window,
+    Compat
 ]);

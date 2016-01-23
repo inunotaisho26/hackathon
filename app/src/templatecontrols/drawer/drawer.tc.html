@@ -28,7 +28,7 @@
         </header>
 		<ul class="drawer-menu" plat-control="plat-foreach" plat-context="links">
 			<li class="{{selected ? 'selected' : ''}}">
-				<plat-link class="bold" plat-options="{ view: view, isUrl: isUrl }" plat-tap="dismiss">
+				<plat-link class="bold" plat-options="{ view: view, isUrl: isUrl }" plat-tap="navigate(@context)">
                     <i class="fa fa-{{icon}}"></i>
                     <span>{{title}}</span>
                 </plat-link>
