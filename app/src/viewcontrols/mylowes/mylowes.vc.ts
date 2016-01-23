@@ -56,6 +56,8 @@ export default class MyLowesViewControl extends BaseViewControl {
             console.log(user);
         }).catch((error) => {
             console.log(error);
+        }).then(() => {
+            context.processing = false;
         });
     }
 

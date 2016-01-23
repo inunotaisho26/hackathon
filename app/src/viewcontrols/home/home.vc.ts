@@ -68,9 +68,9 @@ export default class HomeViewControl extends BaseViewControl {
         }
     };
 
-    constructor(private product: Product, private link: Link) {
-        super();
-    }
+    // constructor(private product: Product, private link: Link) {
+    //     super();
+    // }
 
     toggleLike(product: any) {
         product.liked = !product.liked;
@@ -78,6 +78,6 @@ export default class HomeViewControl extends BaseViewControl {
 }
 
 register.viewControl('home-vc', HomeViewControl, [
-    Product,
-    Link
+    // Product,
+    // Link
 ]);
