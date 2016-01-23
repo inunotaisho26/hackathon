@@ -10,6 +10,8 @@ export default class BaseService {
     };
     protected static accessToken = 'QWRvYmU6ZW9pdWV3ZjA5ZmV3bw==';
     protected static host = 'http://api.lowes.com';
+    protected static ssoToken = '';
+    protected static apiKey = 'xfjtt93gs7yxs9rnph96v4c3';
 
     protected http: async.Http;
     protected Promise: async.IPromise;
@@ -33,10 +35,10 @@ export default class BaseService {
         });
     }
 
-    get(path?: string): plat.async.IAjaxThenable<any> {
+    get(path?: string, data?: any): plat.async.IAjaxThenable<any> {
         return this.json({
             method: 'GET',
-            url: BaseService.host + this.api + this.pathToString(path)
+            url: BaseService.host + this.api + this.pathToString(path) + this.toQuery(data)
         });
     }
 
@@ -71,6 +73,18 @@ export default class BaseService {
             timeout: 15000
         });
 
+        let url = options.url;
+
+        if(url.indexOf('?') > -1) {
+            url += '&';
+        } else {
+            url += '?'
+        }
+
+        url += 'api_key=' + BaseService.apiKey;
+
+        options.url = url;
+
         return this.http.json(options).then(this.handleResponse, this.handleError.bind(this));
     }
 
@@ -96,5 +110,20 @@ export default class BaseService {
         }
 
         return path;
+    }
+
+    protected toQuery(query: any): string {
+        let q = '',
+            utils = this.utils;
+
+        q += utils.map((value: string, key: string): string => {
+            return key + '=' + value;
+        }, query).join('&');
+
+        if(!utils.isEmpty(q)) {
+            q = '?' + q;
+        }
+
+        return q;
     }
 }
