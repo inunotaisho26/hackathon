@@ -3,7 +3,10 @@
     #platui > #media;
 
     [plat-control="home-vc"] {
-        & .hero {
+        @off-white: #eeeeee;
+        background-color: @off-white;
+
+        .hero {
             .background-cover(@home-hero);
 
             // it is important to set a background color that closely represents the image background color
@@ -16,6 +19,74 @@
 
             .button-link {
                 margin-top: 1em;
+            }
+        }
+
+        .article {
+            padding: 1.5em 1em 2em;
+
+            .body {
+                font-size: 95%;
+            }
+        }
+
+        .content {
+
+            .section {
+                .section-header {
+                    padding: 2.5em 1em;
+                    background-color: @lowes-light-blue;
+                    color: @off-white;
+                    text-align: center;
+
+                    .title {
+                        font-size: 150%;
+                    }
+                }
+
+                .image {
+                    position: relative;
+                    height: 13em;
+                    background-size: 115%;
+                    background-position: center;
+                    background-repeat: no-repeat;
+
+                    .like-button {
+                        .border-top-left-radius(8px);
+                        width: 3.5em;
+                        height: 3.5em;
+                        position: absolute;
+                        right: 0;
+                        bottom: 0;
+                        background-color: rgba(0,0,0,0.5);
+                        color: @off-white;
+
+                        & > i {
+                            font-size: 150%;
+                            display: block;
+                            position: absolute;
+                            margin: auto;
+                            left: 0;
+                            right: 0;
+                            top: 0;
+                            bottom: 0;
+                            width: 1em;
+                            height: 1em;
+
+                            &.active {
+                                color: @success-color;
+                            }
+                        }
+                    }
+                }
+
+                .product-text {
+                    padding: 0 1.5em;
+                }
+
+                .product-description {
+                    font-size: 95%;
+                }
             }
         }
     }
