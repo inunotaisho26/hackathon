@@ -6,6 +6,10 @@ export default class LinkService extends BaseService {
         return this.info(link);
     }
 
+    requiredItems(link: string): async.IThenable<models.IProductList> {
+        return this.info(link);
+    }
+
     protected info(link: string): async.IThenable<any> {
         return this.json({
             method: 'GET',
