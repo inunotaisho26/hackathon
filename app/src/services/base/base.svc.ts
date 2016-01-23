@@ -33,7 +33,7 @@ export default class BaseService {
         this.api = api + '/';
     }
 
-    post(data: any, path?: string): plat.async.IAjaxThenable<any> {
+    protected post(data: any, path?: string): plat.async.IAjaxThenable<any> {
         return this.json({
             method: 'POST',
             url: BaseService.host + this.api + this.pathToString(path),
@@ -41,14 +41,14 @@ export default class BaseService {
         });
     }
 
-    get(path?: string, data?: any): plat.async.IAjaxThenable<any> {
+    protected get(path?: string, data?: any): plat.async.IAjaxThenable<any> {
         return this.json({
             method: 'GET',
             url: BaseService.host + this.api + this.pathToString(path) + this.toQuery(data)
         });
     }
 
-    put(data: any, path?: string): plat.async.IAjaxThenable<any> {
+    protected put(data: any, path?: string): plat.async.IAjaxThenable<any> {
         return this.json({
             method: 'PUT',
             url: BaseService.host + this.api + this.pathToString(path),
@@ -56,7 +56,7 @@ export default class BaseService {
         });
     }
 
-    delete(data?: any, path?: string): plat.async.IAjaxThenable<any> {
+    protected delete(data?: any, path?: string): plat.async.IAjaxThenable<any> {
         return this.json({
             method: 'DELETE',
             url: BaseService.host + this.api + this.pathToString(path),
@@ -64,7 +64,7 @@ export default class BaseService {
         });
     }
 
-    json(options: async.IHttpConfig): plat.async.IAjaxThenable<any> {
+    protected json(options: async.IHttpConfig): plat.async.IAjaxThenable<any> {
         let utils = this.utils;
 
         let headers = <any>{};
@@ -98,11 +98,11 @@ export default class BaseService {
         return this.http.json(options).then(this.handleResponse, this.handleError.bind(this));
     }
 
-    handleResponse(result: async.IAjaxResponse<any>): any {
+    protected handleResponse(result: async.IAjaxResponse<any>): any {
         return result.response;
     }
 
-    handleError(error: async.AjaxError): void {
+    protected handleError(error: async.AjaxError): void {
         throw error.response;
     }
 
