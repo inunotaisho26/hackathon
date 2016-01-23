@@ -14,6 +14,10 @@ export default class NavbarTemplateControl extends ui.TemplateControl {
 
     onDrawerOpen() {
         let context = this.context;
+        if (context.selected === 'menu') {
+            return;
+        }
+
         this.lastSelected = context.selected;
         context.selected = 'menu';
     }
@@ -35,7 +39,7 @@ export default class NavbarTemplateControl extends ui.TemplateControl {
                 this.lastSelected = context.selected;
                 context.selected = selected;
                 break;
-            case 'test':
+            case 'home':
                 context.selected = selected;
                 break;
             case 'lorem':

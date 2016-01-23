@@ -6,11 +6,17 @@
         background-color: @primary-color;
 
         @item-height: @navbar-height;
+        @border: 1px solid darken(@primary-color, 10%);
 
 		& > .drawer-container {
 			height: 100%;
 			width: 100%;
 			position: relative;
+
+            & > header {
+                height: 2 * @item-height;
+                border-bottom: @border;
+            }
 
 			& .drawer-menu {
 				z-index: 10;
