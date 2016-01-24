@@ -19,8 +19,22 @@
     <plat-button class="button-secondary">Sign Up</plat-button>
 </plat-if>
 <plat-if plat-options="{ condition: !!user }" class="account">
-    <div class="welcome">Welcome, {{user.firstName}}.</div>
+    <div class="welcome">
+        <span>Welcome, {{user.firstName}}.</span>
+    </div>
     <div class="profile">
+        </div>
+        <div class="input-block">
+            <div class="question">
+                Gardening experience:&nbsp;
+                <i class="fa fa-thumbs-up{{experience === 'Red thumb' ? ' danger' : experience === 'Green thumb' ? ' primary' : ''}}"></i>
+            </div>
+            <div class="answer">
+                <plat-radio plat-bind="experience">Black thumb</plat-radio><br>
+                <plat-radio plat-bind="experience">Red thumb</plat-radio><br>
+                <plat-radio plat-bind="experience">Green thumb</plat-radio>
+            </div>
+        </div>
         <div class="input-block">
             <div class="question">
                 Choose your type of residence:
@@ -41,7 +55,6 @@
                 <i class="fa fa-cloud"></i>
             </div>
         </div>
-    </div>
     <plat-button class="button-danger sign-out" plat-tap="signOut">Sign Out
         <plat-ring class="button-ring" plat-visible="{{processing}}"></plat-ring>
     </plat-button>

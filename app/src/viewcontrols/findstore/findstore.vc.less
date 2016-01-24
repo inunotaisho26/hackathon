@@ -7,21 +7,48 @@
             padding: 1em;
             font-size: 200%;
             text-align: center;
-            color: @secondary-color;
+            background-color: @secondary-color;
+            color: @white;
         }
 
         .menu {
+            font-size: 90%;
+
             .item {
-                padding: 1em;
+                @border: 1px solid darken(@background-grey, 10%);
+                position: relative;
+                padding: 1em 2.5em 1em 1em;
+                border-top: @border;
 
-                .content {
-
+                &:last-child {
+                    border-bottom: @border;
                 }
 
-                i {
+                .content {
+                    & > div {
+                        margin: 0.25em;
+                    }
+
+                    .name {
+                        font-size: 105%;
+                        color: @primary-color;
+                    }
+
+                    .phone {
+                        text-decoration: underline;
+                    }
+
+                    .fa-compass {
+                        margin-right: 0.5em;
+                    }
+                }
+
+                & > i {
                     position: absolute;
-                    right: 0;
+                    right: 0.75em;
+                    top: 40%;
                     font-size: 200%;
+                    color: @secondary-color;
                 }
             }
         }

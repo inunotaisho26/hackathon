@@ -18,6 +18,7 @@ declare namespace models {
         x_serviceStoreNumber: number;
         residence?: string;
         shade?: number;
+        experience?: string;
     }
 
     interface IList {
