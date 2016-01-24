@@ -110,12 +110,14 @@ export default class BaseService {
 
     protected handleError(options: async.IHttpConfig, error: async.AjaxError): async.IThenable<any> {
         if (error.status !== 403) {
+            console.log(JSON.stringify(error, null, 2));
             throw error.response;
         }
 
         let headers = error.getAllResponseHeaders();
 
         if (headers.indexOf('ERR_403_DEVELOPER_OVER_QPS') === -1) {
+            console.log(JSON.stringify(error, null, 2));
             throw error.response;
         }
 

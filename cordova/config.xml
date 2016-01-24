@@ -27,6 +27,14 @@
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
     <allow-intent href="maps:*" />
+
+    <allow-navigation href="http://*/*" />
+    <allow-navigation href="https://*/*" />
+    <allow-navigation href="tel:*" />
+    <allow-navigation href="sms:*" />
+    <allow-navigation href="mailto:*" />
+    <allow-navigation href="geo:*" />
+    <allow-navigation href="maps:*" />
     <platform name="android">
         <allow-intent href="market:*" />
         <icon density="hdpi" src="res/platform/android/res/drawable-hdpi/appicon.png" />
@@ -80,4 +88,5 @@
     <preference name="xwalkMultipleApk" value="true" />
     <plugin name="cordova-plugin-statusbar" spec="^2.1.0" />
     <plugin name="cordova-plugin-inappbrowser" spec="^1.2.0" />
+    <plugin name="cordova-plugin-geolocation" spec="~2.1.0" />
 </widget>
