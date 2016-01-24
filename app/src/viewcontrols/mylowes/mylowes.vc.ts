@@ -1,6 +1,7 @@
 import {register, controls, storage} from 'platypus';
 import BaseViewControl from '../base/base.vc';
 import CustomerSvc from '../../services/customer/customer.svc';
+import Drawer from '../../templatecontrols/drawer/drawer.tc';
 
 export default class MyLowesViewControl extends BaseViewControl {
     templateString: string = require('./mylowes.vc.html');
@@ -29,7 +30,7 @@ export default class MyLowesViewControl extends BaseViewControl {
     email: controls.INamedElement<HTMLInputElement, void>;
     password: controls.INamedElement<HTMLInputElement, void>;
 
-    constructor(protected svc: CustomerSvc, protected storage: storage.LocalStorage) {
+    constructor(protected svc: CustomerSvc, protected storage: storage.LocalStorage, protected drawer: Drawer) {
         super();
     }
 
@@ -125,7 +126,8 @@ export default class MyLowesViewControl extends BaseViewControl {
             this.notification.fail('Invalid Login Credentials');
         }).then(() => {
             context.processing = false;
-        });
+            this.drawer.refreshStore();
+        }).catch(this.utils.noop);
     }
 
     clear() {
@@ -143,5 +145,6 @@ export default class MyLowesViewControl extends BaseViewControl {
 
 register.viewControl('mylowes-vc', MyLowesViewControl, [
     CustomerSvc,
-    storage.LocalStorage
+    storage.LocalStorage,
+    Drawer
 ]);

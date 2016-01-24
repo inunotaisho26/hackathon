@@ -136,4 +136,4 @@ register.control('drawer', DrawerTemplateControl, [
     Window,
     Compat,
     StoreSvc
-]);
+], true);
