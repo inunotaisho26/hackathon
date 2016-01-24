@@ -20,10 +20,10 @@ export default class StoreService extends BaseService {
         })).then(this.one);
     }
 
-    byLatLong(lat: string | number, long: string | number): async.IThenable<models.IStoreLocation> {
+    byLatLong(lat: string | number, long: string | number, maxResults = 1): async.IThenable<models.IStoreLocation> {
         return this.get(this.toQuery({
             query: lat + ',' + long,
-            maxResults: 1
+            maxResults
         }));
     }
 
@@ -36,7 +36,7 @@ export default class StoreService extends BaseService {
 
     near(): async.IThenable<models.IStoreLocation> {
         return this.getLocation().then((coords)=> {
-            return this.byLatLong(coords.latitude, coords.longitude);
+            return this.byLatLong(coords.latitude, coords.longitude, 5);
         });
     }
 
@@ -47,8 +47,7 @@ export default class StoreService extends BaseService {
             return this.byStoreNumber(store);
         }
 
-        return this.location.getCurrentPosition().then((result) => {
-            let coords = result.coords;
+        return this.getLocation().then((coords) => {
             return this.byLatLong(coords.latitude, coords.longitude);
         }).then(this.one);
     }
