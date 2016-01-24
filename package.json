@@ -1,6 +1,6 @@
 {
-  "name": "website",
-  "version": "0.0.0",
+  "name": "lowes-grows",
+  "version": "0.0.1",
   "private": true,
   "main": "app/dist/app.js",
   "dependencies": {
@@ -42,11 +42,6 @@
     "copy:images": "ncp app/images cordova/www/images",
     "copy:index": "ncp app/index.html cordova/www/index.html",
     "cordova": "npm run copy && plat cordova prepare && plat cordova build",
-    "deploy": "npm run deploy:build && mkdirp deploy && npm run deploy:clean && npm run deploy:mkdir && npm run deploy:copy",
-    "deploy:build": "npm run clean:dist && npm run build -- -- -- -p [minifyify --no-map]",
-    "deploy:clean": "rimraf deploy/*",
-    "deploy:copy": "concurrent -r -k \"ncp app/index.html deploy/index.html\" \"ncp app/config.json deploy/config.json\" \"ncp app/favicon.ico deploy/favicon.ico\" \"ncp app/dist deploy/dist\" \"ncp app/fonts deploy/fonts\" \"ncp app/images deploy/images\" \"ncp app/lib deploy/lib\" \"ncp node_modules/platypusui/dist/fonts deploy/node_modules/platypusui/dist/fonts\" \"ncp node_modules/font-awesome/fonts deploy/node_modules/font-awesome/fonts\"",
-    "deploy:mkdir": "mkdirp deploy/node_modules && mkdirp deploy/node_modules/platypusui/dist && mkdirp deploy/node_modules/font-awesome",
     "initialize": "concurrent -r -k \"mkdirp app/fonts\" \"mkdirp app/images\" \"mkdirp app/lib\"",
     "less": "mkdirp app/dist && lessc app/styles/main.less > app/dist/app.css --clean-css=\"--s0 --advanced\"",
     "lint": "tsconfig-lint --use-glob",

@@ -1,18 +1,12 @@
-# website
+# Lowe's Grows Garden App
 
-This is a starter template for use in a responsive website.
+Want to be a better gardener? Follow the advice from experts at Lowe's and turn your black thumb into a green thumb in no time!
 
-## Notable Features
+## Requirements
 
-0. Pre-defined navbar+drawer+footer
-0. An easy way to change from a fixed navbar to a navbar that can scroll out of view (using the .scroll-y class)
-0. A base viewcontrol that is built for SEO
-0. Injectables for help with navigation and page scrolling
-0. Plenty of built-in LESS for layout
-0. Reference LESS for PlatypusUI variables
-0. Built-out favicons for different devices (using http://www.favicon-generator.org/)
-0. Pre-defined LESS for heros
-0. Pre-defined mixins for background-cover, containers, and vertical centering
+0. `Node/npm` - https://nodejs.org/en/
+0. Cordova (`npm install cordova -g`)
+0. Cordova platforms - https://cordova.apache.org/docs/en/4.0.0/guide/platforms/
 
 ## Installation
 
@@ -38,7 +32,7 @@ The default server configuration is to serve assets on `http://localhost:3000` f
 
 > **NOTE**: `npm start` does not minify your javascript files in order to speed up your development builds
 
-### Cordova
+### Cordova (Deploying to devices)
 
 When you're ready to build for your cordova project there are a couple of things you want to do:
 
@@ -116,21 +110,11 @@ inside `src` to help separate components in the app:
 - **app**
   - contains the global plat.App object, used to configure your application and respond to global lifecycle events
 
-- **attributecontrols**
-  - contains any common AttributeControls
-
 - **injectables**
   - contains the injectables used in the app (such as converters, helper classes, formatting classes)
 
 - **models**
-  - contains classes that help you convert server models into the frontend *view-models*
   - contains a `models.d.ts` file, in which you can declare the interfaces for each model
-
-- **repositories**
-  - contains all the repository classes
-  - repositories are the hubs for communicating between ViewControls, Services, and Models
-  - repositories can locally cache information obtained from a service
-  - repositories are used to instantiate models to send to the server, and *view-models* to send to the ViewControl
 
 - **services**
   - contains all the service classes
@@ -171,13 +155,3 @@ You can use the `config.xml` to store project configuration, so that other team 
 - When adding a plugin, use the `--save` flag to save the plugin information (name and version specification) to the `config.xml`
 - When adding a platform, the `--save` flag will store the platform information similar to the plugins
   - **NOTE** It is not recommended to save `ios` or `windows` platform information to the `config.xml` to avoid compatibility issues across platforms.
-
-### Interaction with the CLI
-
-The CLI tries to be non-invasive when it comes to Cordova. There is a `plat cordova` command which basically serves as a way to execute `cordova`
-cli commands from anywhere in your project. In other words:
-
-- Normally any `cordova` commands must be run from within a cordova project
-- With the CLI you can run `plat cordova` and it will automatically run the cordova command in your cordova project
-
-`plat cordova run android --device` allows you run your cordova app on a device without changing to the `cordova` directory.
