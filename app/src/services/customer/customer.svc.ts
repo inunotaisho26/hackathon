@@ -22,7 +22,7 @@ export default class CustomerService extends BaseService {
             BaseService.ssoToken = customer.SSOToken;
 
             this.storage.setItem('sso', customer.SSOToken);
-            this.storage.setItem('store', customer.store);
+            this.storage.setItem('store', customer.x_serviceStoreNumber);
             this.storage.setItem('customer', JSON.stringify(customer));
 
             return customer;
