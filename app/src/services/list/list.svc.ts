@@ -17,10 +17,10 @@ export default class ListService extends BaseService {
     }
 
     create(name: string, note: string): async.IThenable<any> {
-        return this.post({
+        return this.post(undefined, this.toQuery({
             name,
             'node.text': note
-        });
+        }));
     }
 
     list(name: string): async.IThenable<models.IList> {
