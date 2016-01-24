@@ -3,6 +3,8 @@ import BaseService from '../base/base.svc';
 import Link from '../link/link.svc';
 
 export default class ProductService extends BaseService {
+    protected cart: Array<models.IProduct> = [];
+
     constructor(private links: Link) {
         super('product');
     }
@@ -25,10 +27,36 @@ export default class ProductService extends BaseService {
             }, list.productList);
         });
     }
+
+    addToCart(product: models.IProduct): void {
+        product = JSON.parse(JSON.stringify(product));
+
+        let exists = this.utils.some((item) => {
+            return item.productId === product.productId;
+        }, this.cart);
+
+        if (!exists) {
+            this.cart.push(product);
+        }
+    }
+
+    removeFromCart(productId: number): void {
+        this.cart = this.cart.filter((item) => {
+            return item.productId !== productId;
+        });
+    }
+
+    getCart(): Array<models.IProduct> {
+        return JSON.parse(JSON.stringify(this.cart));
+    }
+
+    clear(): void {
+        this.cart = [];
+    }
 }
 
 register.injectable('product-svc', ProductService, [
-   Link
+    Link
 ]);
 
 interface IProductBy {
