@@ -1,6 +1,7 @@
 import {async, register} from 'platypus';
 import BaseService from '../base/base.svc';
 import List from '../list/list.svc';
+import {LIST_NAME} from '../../references/references';
 
 export default class CustomerService extends BaseService {
     constructor(private list: List) {
@@ -26,7 +27,7 @@ export default class CustomerService extends BaseService {
             this.storage.setItem('store', customer.x_serviceStoreNumber);
             this.storage.setItem('customer', JSON.stringify(customer));
 
-            return this.list.create('Lowes Grows Garden', 'Let your garden grow with Lowes').then(() => {
+            return this.list.create(LIST_NAME, 'Let your garden grow with Lowes').then(() => {
                 return customer;
             });
         });
