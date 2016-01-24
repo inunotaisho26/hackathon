@@ -62,17 +62,6 @@ export default class MyApp extends App {
         let _window: any = this.window,
             utils = this.utils,
             isObject = utils.isObject;
-//             parsePlugin: IParsePlugin = _window.parsePlugin;
-//
-//         if (isObject(parsePlugin)) {
-//             let clientKey = /iemobile/i.test(_window.navigator.userAgent) ?
-//                 'Hn2ccSewihGWdORVJeGQ1h6HqOYNOkUpZYsMu35Z' :
-//                 '6mpaXFvZLyLVpjTDyAJZIYWj9g4DlsMajpclQN5r';
-//
-//             parsePlugin.initialize('ocU4stImPGfv5qv6cGVNCsjO1oq139hGinjfEk5G', clientKey, () => {
-//                 parsePlugin.subscribe('LowesAll');
-//             });
-//         }
 
         utils.defer(() => {
             let navigator: any = _window.navigator,
