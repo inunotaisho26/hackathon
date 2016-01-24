@@ -11,7 +11,8 @@ export default class ListViewControl extends BaseViewControl {
     context = {
         products: <Array<models.IListItem>>[],
         listName: LIST_NAME,
-        loading: true
+        loading: true,
+        noItems: false
     };
 
     constructor(private customers: Customer, private lists: List) {
@@ -25,6 +26,10 @@ export default class ListViewControl extends BaseViewControl {
             }).then((items) => {
                 if (!this.utils.isArray(items.list)) {
                     items.list = [];
+                }
+
+                if (items.list.length === 0) {
+                    this.context.noItems = true;
                 }
 
                 this.context.products = items.list;
@@ -44,13 +49,19 @@ export default class ListViewControl extends BaseViewControl {
         ev.preventDefault();
         ev.stopPropagation();
 
-        let item = this.context.products[index];
-        this.lists.deleteItem(item.productInformation.catalogEntryId).catch(() => {
+        let products = this.context.products,
+            item = products[index];
+
+        this.lists.deleteItem(item.entityId).catch(() => {
             this.notification.fail('Error removing item from list');
-            this.context.products.splice(index, 0, item);
+            products.splice(index, 0, item);
         });
 
-        this.context.products.splice(index, 1);
+        if (products.length === 1) {
+            this.utils.defer(() => { this.context.noItems = true; }, 500);
+        }
+
+        products.splice(index, 1);
     }
 
     addToCart(product: models.IListItem) {

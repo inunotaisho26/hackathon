@@ -1,17 +1,17 @@
+<plat-resources>
+    <injectable alias="converters">converters</injectable>
+</plat-resources>
 <div class="title">{{listName}}</div>
 <plat-ring class="loading-ring" plat-visible="{{loading}}"></plat-ring>
-<div class="none" plat-visible="{{!loading && products.length === 0}}">No items</div>
-<plat-foreach plat-context="products" plat-visible="{{!loading && products.length > 0}}">
+<div class="none" plat-visible="{{!loading && noItems}}">No items</div>
+<plat-foreach plat-context="products" plat-visible="{{!loading && products.length > 0}}" plat-options="{ animate: true }">
     <div class="tile" plat-tap="navigate(productInformation.catalogEntryId)">
         <div class="image" plat-style="background-image: url({{@root.imageUrl(imageId)}});">
             <div class="product-text">
-                <span class="product-name">{{name}}</span>
+                <span class="product-name">{{@converters.title(name)}}</span>
                 <div class="remove" plat-tap="remove(@index)"><i class="fa fa-trash-o"></i></div>
                 <div class="add" plat-tap="addToCart(@context)"><i class="fa fa-cart-plus"></i></div>
             </div>
-            <!--<div class="like-button" plat-tap="toggleLike(@context)" plat-visible="{{@rootContext.canLike}}">
-                <i class="fa fa-{{liked ? 'thumbs-up' : 'thumbs-o-up'}}{{liked ? ' active' : ''}}"></i>
-            </div>-->
         </div>
     </div>
 </plat-foreach>
