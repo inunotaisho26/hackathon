@@ -42,6 +42,10 @@ export default class Converters {
     }
 
     title(title: string, both = false): string {
+        if (!this.utils.isString(title)) {
+            return '';
+        }
+
         let firstIndex = title.indexOf(' '),
             lastIndex = title.lastIndexOf(' ');
 
