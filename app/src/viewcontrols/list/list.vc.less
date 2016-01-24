@@ -3,6 +3,26 @@
     #platui > #media;
 
     [plat-control="list-vc"] {
+        .title {
+            padding: 1em;
+            font-size: 200%;
+            text-align: center;
+            background-color: @secondary-color;
+            color: @white;
+        }
+
+        .none {
+            margin-top: 2em;
+            text-align: center;
+        }
+
+        .tile {
+            .border-radius(10px);
+            width: 98%;
+            margin: 0.25em auto 0.5em;
+            overflow: hidden;
+        }
+
         .image {
             position: relative;
             height: 13em;
@@ -10,33 +30,45 @@
             background-position: center;
             background-repeat: no-repeat;
 
-            .like-button {
-                .border-top-left-radius(8px);
-                width: 3.5em;
-                height: 3.5em;
+            .product-text {
+                height: 2.5em;
+                line-height: 2.5em;
+                width: 100%;
                 position: absolute;
-                right: 0;
                 bottom: 0;
+                left: 0;
                 background-color: rgba(0,0,0,0.5);
-                color: @off-white;
-
-                & > i {
-                    font-size: 150%;
-                    display: block;
-                    position: absolute;
-                    margin: auto;
-                    left: 0;
-                    right: 0;
-                    top: 0;
-                    bottom: 0;
-                    width: 1em;
-                    height: 1em;
-
-                    &.active {
-                        color: @success-color;
-                    }
-                }
+                color: @white;
+                text-align: center;
             }
+
+//             .like-button {
+//                 .border-top-left-radius(8px);
+//                 width: 3.5em;
+//                 height: 3.5em;
+//                 position: absolute;
+//                 right: 0;
+//                 bottom: 0;
+//                 background-color: rgba(0,0,0,0.5);
+//                 color: @off-white;
+//
+//                 & > i {
+//                     font-size: 150%;
+//                     display: block;
+//                     position: absolute;
+//                     margin: auto;
+//                     left: 0;
+//                     right: 0;
+//                     top: 0;
+//                     bottom: 0;
+//                     width: 1em;
+//                     height: 1em;
+//
+//                     &.active {
+//                         color: @success-color;
+//                     }
+//                 }
+//             }
         }
     }
 }
