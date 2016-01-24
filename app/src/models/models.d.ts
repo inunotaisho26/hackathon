@@ -16,6 +16,8 @@ declare namespace models {
         x_benefitCode: string;
         x_remainingAttempts: number;
         x_serviceStoreNumber: number;
+        residence?: string;
+        shade?: number;
     }
 
     interface IList {
