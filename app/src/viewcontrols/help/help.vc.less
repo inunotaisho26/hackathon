@@ -3,6 +3,30 @@
     #platui > #media;
 
     [plat-control="help-vc"] {
+        .title {
+            padding: 1em;
+            font-size: 200%;
+            text-align: center;
+            color: @secondary-color;
+        }
 
+        .menu {
+            .item {
+                @border: 1px solid darken(@background-grey, 10%);
+                font-size: 110%;
+                padding: 1em;
+                border-top: @border;
+
+                &:last-child {
+                    border-bottom: @border;
+                }
+
+                i {
+                    float: right;
+                    font-size: 150%;
+                    color: @secondary-color;
+                }
+            }
+        }
     }
 }

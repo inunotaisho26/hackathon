@@ -1,1 +1,12 @@
-<h1>Find Store</h1>
+<div class="title">Find a Store</div>
+<plat-ring class="loading-ring" plat-visible="{{loading}}"></plat-ring>
+<plat-foreach class="menu" plat-context="stores">
+    <div class="item">
+        <div class="content">
+            <div class="name">{{store.name}}</div>
+            <div class="address">{{store.address}}</div>
+            <div class="phone">{{store.phone}}</div>
+        </div>
+        <i class="fa fa-angle-right"></i>
+    </div>
+</plat-foreach>
