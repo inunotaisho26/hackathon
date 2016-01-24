@@ -115,7 +115,7 @@ export default class BaseService {
 
         let headers = error.getAllResponseHeaders();
 
-        if (headers.indexOf('ERR_403_DEVELOPER_OVER_QPS') === -1) {
+        if (headers.indexOf('ERR_403_DEVELOPER_OVER_QPS') === -1 && headers.indexOf('ERR_504_GATEWAY_TIMEOUT') === -1) {
             throw error.response;
         }
 
