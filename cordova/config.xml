@@ -6,7 +6,7 @@
     <content src="index.html" />
     <access origin="*" />
     <preference name="Orientation" value="portrait" />
-    <preference name="Fullscreen" value="true" />
+    <preference name="Fullscreen" value="false" />
     <preference name="KeyboardShrinksView" value="true" />
     <preference name="AutoHideSplashScreen" value="false" />
     <preference name="SplashScreenDelay" value="3000" />
