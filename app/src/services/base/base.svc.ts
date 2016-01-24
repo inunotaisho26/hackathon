@@ -73,7 +73,7 @@ export default class BaseService {
             headers[OAUTH_HEADER] = OAUTH_PREFIX + BaseService.accessToken;
         }
 
-        if (utils.isString(BaseService.ssoToken)) {
+        if (utils.isString(BaseService.ssoToken) && options.url.indexOf('login') === -1) {
             headers[SSO_HEADER] = BaseService.ssoToken;
         }
 
