@@ -34,17 +34,22 @@ export default class MyLowesViewControl extends BaseViewControl {
     }
 
     initialize() {
-        this.svc.login().then((user: any) => {
+        this.svc.login().then((user) => {
             let context = this.context,
                 utils = this.utils;
 
             if (utils.isString(user.residence)) {
                 context.residence = user.residence;
+            } else {
+                user.residence = context.residence;
             }
 
             if (utils.isNumber(user.shade)) {
                 context.shade = user.shade;
+            } else {
+                user.shade = context.shade;
             }
+
             this.context.user = user;
         }).catch(this.utils.noop);
     }
@@ -94,6 +99,27 @@ export default class MyLowesViewControl extends BaseViewControl {
         context.processing = true;
 
         this.svc.login(email, password).then((user) => {
+            let utils = this.utils,
+                store = false;
+
+            if (utils.isString(user.residence)) {
+                context.residence = user.residence;
+            } else {
+                store = true;
+                user.residence = context.residence;
+            }
+
+            if (utils.isNumber(user.shade)) {
+                context.shade = user.shade;
+            } else {
+                store = true;
+                user.shade = context.shade;
+            }
+
+            if (store) {
+                this.storage.setItem('customer', JSON.stringify(user));
+            }
+
             this.context.user = user;
         }).catch((error) => {
             this.notification.fail('Invalid Login Credentials');
