@@ -24,7 +24,8 @@ export default class FindStoreViewControl extends BaseViewControl {
 
             context.stores = stores.storeLocation;
         }).catch((error) => {
-            this.notification.fail('Error retrieving stores');
+            // this.notification.fail('Error retrieving stores');
+            this.notification.fail(JSON.stringify(error, null, 2));
         }).then(() => {
             context.loading = false;
         });

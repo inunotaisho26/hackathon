@@ -27,6 +27,14 @@
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
     <allow-intent href="maps:*" />
+
+    <allow-navigation href="http://*/*" />
+    <allow-navigation href="https://*/*" />
+    <allow-navigation href="tel:*" />
+    <allow-navigation href="sms:*" />
+    <allow-navigation href="mailto:*" />
+    <allow-navigation href="geo:*" />
+    <allow-navigation href="maps:*" />
     <platform name="android">
         <allow-intent href="market:*" />
         <icon density="hdpi" src="res/platform/android/res/drawable-hdpi/appicon.png" />
@@ -78,8 +86,5 @@
     <preference name="xwalkCommandLine" value="--disable-pull-to-refresh-effect" />
     <preference name="xwalkMode" value="embedded" />
     <preference name="xwalkMultipleApk" value="true" />
-    <!--<plugin name="com.phonegap.parsepushplugin" spec="https://github.com/taivo/parse-push-plugin">
-        <variable name="APP_ID" value="ocU4stImPGfv5qv6cGVNCsjO1oq139hGinjfEk5G" />
-        <variable name="CLIENT_KEY" value="6mpaXFvZLyLVpjTDyAJZIYWj9g4DlsMajpclQN5r" />
-    </plugin>-->
+    <plugin name="cordova-plugin-geolocation" spec="~2.1.0" />
 </widget>
