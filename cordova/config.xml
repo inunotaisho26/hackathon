@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="io.platypi.website" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>Website</name>
+    <name>Lowe's Grows</name>
     <description>A Platypi CLI cordova app</description>
     <author email="support@platypi.io" href="https://platypi.io">Platypi Team</author>
     <content src="index.html" />
