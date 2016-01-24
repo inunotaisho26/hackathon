@@ -24,6 +24,11 @@
             font-size: 90%;
         }
 
+        .welcome {
+            text-align: center;
+            margin: 2em 0;
+        }
+
         .login-form {
             .forgot {
                 color: @primary-color;
@@ -63,6 +68,60 @@
         .plat-button {
             .border-radius(0);
             width: 100%;
+
+            &.sign-out {
+                margin-top: 3em;
+            }
+        }
+
+        .account {
+            .input-block {
+                margin-bottom: 2em;
+
+                .question {
+                    margin-bottom: 0.25em;
+                }
+
+                .answer {
+                    padding-left: 1em;
+
+                    &.pita {
+                        line-height: normal;
+
+                        i {
+                            vertical-align: 0.1em;
+
+                            &.fa-sun-o {
+                                color: @caution-color;
+                                position: relative;
+
+                                &::after {
+                                    .border-radius(50%);
+                                    content: "";
+                                    background-color: @caution-color;
+                                    width: 0.75em;
+                                    height: 0.75em;
+                                    position: absolute;
+                                    margin: auto;
+                                    left: 0;
+                                    right: 0;
+                                    top: 0;
+                                    bottom: 0;
+                                }
+                            }
+
+                            &.fa-cloud {
+                                color: #97a7a7;
+                            }
+                        }
+                    }
+                }
+
+                .plat-slider {
+                    width: 80%;
+                    display: inline-block;
+                }
+            }
         }
     }
 }

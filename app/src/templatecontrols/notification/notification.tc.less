@@ -1,0 +1,56 @@
+& {
+    #platui > #mixins;
+    #platui > #media;
+
+    [plat-control="notification"] {
+        .translate-accelerate(-50%;0);
+		display: none;
+		position: absolute;
+		top: 1em;
+        left: 50%;
+		z-index: 9999999;
+		text-align: center;
+		cursor: pointer;
+
+		& > .notification {
+            .border-radius(5px);
+			padding: 0.5em 1em;
+			margin: 0;
+			display: inline-block;
+			background-color: @accent;
+			border-color: darken(@accent, 10%);
+			border-style: solid;
+			border-width: 2px;
+            box-sizing: border-box;
+
+			& > ul.notification-list {
+				margin: 0;
+				padding: 0;
+				list-style: none;
+				font-size: 90%;
+			}
+
+			&.fail {
+				@fail-red: lighten(desaturate(@red, 20%), 20%);
+				background-color: @fail-red;
+				color: darken(@fail-red, 25%);
+				border-color: darken(@fail-red, 15%);
+			}
+
+			&.success {
+				@success-green: lighten(desaturate(@green, 20%), 20%);
+				background-color: @success-green;
+				color: darken(@success-green, 25%);
+				border-color: darken(@success-green, 15%);
+			}
+		}
+
+		&.notification-enabled {
+			display: inline-block;
+		}
+
+		&.notification-fade {
+			.animation(FADE_OUT 2s forwards);
+		}
+    }
+}

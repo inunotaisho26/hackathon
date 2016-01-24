@@ -4,7 +4,7 @@
     #platui > #media;
 	#platui > #variables;
 
-    *:not(img):not(.plat-animated-child):not([plat-control="drawer"]) {
+    *:not(img):not(.plat-animated-child):not([plat-control="drawer"]):not([plat-control="notification"]) {
         .translateZ(0);
     }
 
@@ -209,8 +209,7 @@
 
             .container {
                 position: relative;
-                top: 45%;
-                .translate-accelerate(0, -55%);
+                top: 25%;
                 text-align: center;
                 color: @white;
 
