@@ -17,7 +17,9 @@ export default class ListService extends BaseService {
     }
 
     create(name: string, note: string): async.IThenable<any> {
-        return this.post(undefined, this.toQuery({
+        return this.post({
+            blank: ''
+        }, this.toQuery({
             name,
             'node.text': note
         }));
