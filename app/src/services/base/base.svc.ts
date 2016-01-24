@@ -108,7 +108,7 @@ export default class BaseService {
         return result.response;
     }
 
-    protected handleError(error: async.AjaxError): void {
+    protected handleError(options: async.IHttpConfig, error: async.AjaxError): void {
         console.log(error);
         throw error.response;
     }
