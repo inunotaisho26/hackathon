@@ -4,7 +4,7 @@
 <div class="title">Checkout</div>
 <plat-ring class="loading-ring" plat-visible="{{loading}}"></plat-ring>
 <div class="none" plat-visible="{{!loading && noItems}}">No items</div>
-<div class="button-block row" plat-tap="clear" plat-visible="{{!noItems && !success}}">
+<div class="button-block row" plat-tap="clear" plat-visible="{{!loading && !noItems && !success}}">
     <plat-button>Reserve for Pickup</plat-button>
     <plat-button>Checkout</plat-button>
 </div>
