@@ -108,9 +108,20 @@ export default class BaseService {
         return result.response;
     }
 
-    protected handleError(options: async.IHttpConfig, error: async.AjaxError): void {
-        console.log(error);
-        throw error.response;
+    protected handleError(options: async.IHttpConfig, error: async.AjaxError): async.IThenable<any> {
+        if (error.status !== 403) {
+            throw error.response;
+        }
+
+        let headers = error.getAllResponseHeaders();
+
+        if (headers.indexOf('ERR_403_DEVELOPER_OVER_QPS') === -1) {
+            throw error.response;
+        }
+
+        return this.wait(800).then(() => {
+            return this.json(options);
+        });
     }
 
     protected pathToString(path: string): string {
