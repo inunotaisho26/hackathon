@@ -20,11 +20,11 @@ export default class StoreService extends BaseService {
         })).then(this.one);
     }
 
-    byLatLong(lat: string | number, long: string | number): async.IThenable<models.ILocation> {
+    byLatLong(lat: string | number, long: string | number): async.IThenable<models.IStoreLocation> {
         return this.get(this.toQuery({
             query: lat + ',' + long,
             maxResults: 1
-        })).then(this.one);
+        }));
     }
 
     byZip(zip: string): async.IThenable<models.ILocation> {
@@ -32,6 +32,12 @@ export default class StoreService extends BaseService {
             query: zip,
             maxResults: 1
         })).then(this.one);
+    }
+
+    near(): async.IThenable<models.IStoreLocation> {
+        return this.getLocation().then((coords)=> {
+            return this.byLatLong(coords.latitude, coords.longitude);
+        });
     }
 
     me(): async.IThenable<models.ILocation> {
@@ -44,6 +50,12 @@ export default class StoreService extends BaseService {
         return this.location.getCurrentPosition().then((result) => {
             let coords = result.coords;
             return this.byLatLong(coords.latitude, coords.longitude);
+        }).then(this.one);
+    }
+
+    private getLocation(): async.IThenable<GeolocationPositionCoordinates> {
+        return this.location.getCurrentPosition().then((result) => {
+            return result.coords;
         });
     }
 

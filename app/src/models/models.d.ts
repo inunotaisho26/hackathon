@@ -151,6 +151,8 @@ declare namespace models {
         mulQuantity: number;
         minQuantity: number;
         links: Array<ILink>;
+        specification: ISpecification;
+        requiredItems: IProductList;
 
     }
 
