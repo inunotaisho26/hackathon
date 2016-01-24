@@ -12,15 +12,6 @@ export default class CustomerService extends BaseService {
         let ssoToken = this.storage.getItem<string>('sso'),
             c = this.storage.getItem<string>('customer');
 
-        this.http.json({
-            url: 'https://www.reddit.com/r/all.json',
-            method: 'GET'
-        }).then((results) => {
-            console.log(JSON.stringify(results.response, null, 2));
-        },(error) => {
-            console.log(JSON.stringify(error, null, 2));
-        });
-
         if (this.utils.isString(ssoToken)) {
             BaseService.ssoToken = ssoToken;
             return this.Promise.resolve(JSON.parse(c));
