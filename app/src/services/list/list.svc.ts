@@ -54,6 +54,6 @@ interface IAddItem {
     productId: number;
     productName: string;
     note?: string;
-    store?: string;
+    store?: string | number;
     associate?: string;
 }
