@@ -7,7 +7,7 @@
         <span class="forgot">Forgot Your Password?</span><br>
         <div class="row save-email">
             <div class="col-phn-8">Save Email</div>
-            <div class="col-phn-4"><plat-toggle class="toggle-secondary" plat-bind="save"></plat-toggle></div>
+            <div class="col-phn-4"><plat-toggle class="toggle-secondary"></plat-toggle></div>
         </div>
         <plat-button class="button-secondary" type="submit">Sign In
             <plat-ring class="button-ring" plat-visible="{{processing}}"></plat-ring>
@@ -21,9 +21,28 @@
 <plat-if plat-options="{ condition: !!user }" class="account">
     <div class="welcome">Welcome, {{user.firstName}}.</div>
     <div class="profile">
-
+        <div class="input-block">
+            <div class="question">
+                Choose your type of residence:
+            </div>
+            <div class="answer">
+                <plat-radio plat-bind="residence">House</plat-radio><br>
+                <plat-radio plat-bind="residence">Apartment</plat-radio><br>
+                <plat-radio plat-bind="residence">Condo</plat-radio>
+            </div>
+        </div>
+        <div class="input-block">
+            <div class="question">
+                Level of Shade: {{convertShade(shade)}}
+            </div>
+            <div class="answer pita">
+                <i class="fa fa-sun-o"></i>
+                <plat-slider class="slider-secondary" plat-options="{ min: 0, max: 3, step: 1 }" plat-bind="shade"></plat-slider>
+                <i class="fa fa-cloud"></i>
+            </div>
+        </div>
     </div>
-    <plat-button class="sign-out">Sign Out
+    <plat-button class="button-danger sign-out" plat-tap="signOut">Sign Out
         <plat-ring class="button-ring" plat-visible="{{processing}}"></plat-ring>
     </plat-button>
 </plat-if>

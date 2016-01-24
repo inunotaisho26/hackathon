@@ -1,13 +1,13 @@
 import {register} from 'platypus';
 import BaseViewControl from '../base/base.vc';
 import MyLowes from '../mylowes/mylowes.vc';
-import Product from '../../services/product/product.svc';
-import Link from '../../services/link/link.svc';
+import CustomerSvc from '../../services/customer/customer.svc';
 
 export default class HomeViewControl extends BaseViewControl {
     templateString: string = require('./home.vc.html');
     context = {
         MyLowes,
+        user: <models.ICustomer>null,
         article: {
             title: 'South Central Gardening: Plants for the Shade',
             caption: 'Brighten a shady area with color and variegation in South Central gardens',
@@ -68,9 +68,15 @@ export default class HomeViewControl extends BaseViewControl {
         }
     };
 
-    // constructor(private product: Product, private link: Link) {
-    //     super();
-    // }
+    constructor(protected customerSvc: CustomerSvc) {
+        super();
+    }
+
+    initialize() {
+        this.customerSvc.login().then((user) => {
+            this.context.user = user;
+        }).catch(this.utils.noop);
+    }
 
     toggleLike(product: any) {
         product.liked = !product.liked;
@@ -78,6 +84,5 @@ export default class HomeViewControl extends BaseViewControl {
 }
 
 register.viewControl('home-vc', HomeViewControl, [
-    // Product,
-    // Link
+    CustomerSvc
 ]);

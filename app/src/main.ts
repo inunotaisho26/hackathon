@@ -13,3 +13,4 @@ import './injectables/scroller/scroller';
 
 import './templatecontrols/drawer/drawer.tc';
 import './templatecontrols/navbar/navbar.tc';
+import './templatecontrols/notification/notification.tc';
