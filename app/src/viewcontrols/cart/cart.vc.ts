@@ -33,7 +33,9 @@ export default class CartViewControl extends BaseViewControl {
             }, cart);
 
             this.context.products = cart;
-        }).catch(this.utils.noop).then(() => {
+        }).catch(() => {
+            this.context.noItems = true;
+        }).then(() => {
             this.context.loading = false;
         });
     }

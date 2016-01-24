@@ -44,7 +44,9 @@ export default class ListViewControl extends BaseViewControl {
 
                 this.context.products = items.list;
             });
-        }).catch(this.utils.noop).then(() => {
+        }).catch(() => {
+            this.context.noItems = true;
+        }).then(() => {
             this.context.loading = false;
         });
     }
