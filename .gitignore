@@ -30,7 +30,6 @@ node_modules
 *.js
 *.css
 *.map
-!app/lib/scripts.js
 
 # Non-essential cordova directories
 cordova/www
