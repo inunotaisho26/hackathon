@@ -9,8 +9,9 @@ export default class ListViewControl extends BaseViewControl {
     templateString: string = require('./list.vc.html');
 
     context = {
-        Product,
-        products: <Array<models.IListItem>>null
+        products: <Array<models.IListItem>>[],
+        listName: LIST_NAME,
+        loading: true
     };
 
     constructor(private customers: Customer, private lists: List) {
@@ -19,11 +20,23 @@ export default class ListViewControl extends BaseViewControl {
 
     initialize(): void {
         this.customers.login().then(() => {
-            this.lists.list(LIST_NAME).then((list) => {
+            return this.lists.list(LIST_NAME).then((list) => {
                 return this.lists.items(list.id);
             }).then((items) => {
+                if (!this.utils.isArray(items.list)) {
+                    items.list = [];
+                }
+
                 this.context.products = items.list;
             });
+        }).catch(this.utils.noop).then(() => {
+            this.context.loading = false;
+        });
+    }
+
+    navigate(id: number) {
+        this.navigator.navigate(Product, {
+            parameters: { id }
         });
     }
 
