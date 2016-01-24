@@ -1,13 +1,16 @@
-import {register} from 'platypus';
+import {register, async} from 'platypus';
 import BaseViewControl from '../base/base.vc';
 import MyLowes from '../mylowes/mylowes.vc';
 import CustomerSvc from '../../services/customer/customer.svc';
+import ListSvc from '../../services/list/list.svc';
+import {LIST_NAME} from '../../references/references';
 
 export default class HomeViewControl extends BaseViewControl {
     templateString: string = require('./home.vc.html');
     context = {
         MyLowes,
         user: <models.ICustomer>null,
+        canLike: true,
         article: {
             title: 'South Central Gardening: Plants for the Shade',
             caption: 'Brighten a shady area with color and variegation in South Central gardens',
@@ -68,21 +71,62 @@ export default class HomeViewControl extends BaseViewControl {
         }
     };
 
-    constructor(protected customerSvc: CustomerSvc) {
+    listId: number;
+    listPromise: async.IThenable<void>;
+
+    constructor(protected customers: CustomerSvc, protected lists: ListSvc) {
         super();
     }
 
     initialize() {
-        this.customerSvc.login().then((user) => {
-            this.context.user = user;
+        let context = this.context;
+        this.customers.login().then((user) => {
+            context.user = user;
         }).catch(this.utils.noop);
+
+        this.listPromise = this.lists.list(LIST_NAME).then((list) => {
+            this.listId = list.id;
+        }).catch((error) => {
+            context.canLike = false;
+            this.notification.fail('Error retrieving user list');
+        });
     }
 
     toggleLike(product: any) {
         product.liked = !product.liked;
+
+        this.listPromise.then(() => {
+            if (product.liked) {
+                return this.lists.addItem(this.listId, {
+                    productId: product.id,
+                    productName: product.name,
+                    store: this.context.user.x_serviceStoreNumber
+                });
+            }
+
+            return this.lists.items(this.listId).then((items) => {
+                let entityId: number;
+                this.utils.some((item) => {
+                    if (item.id === product.id) {
+                        entityId = item.entityId;
+                        return true;
+                    }
+                }, items.list);
+
+                if (!entityId) {
+                    return;
+                }
+
+                return this.lists.deleteItem(entityId);
+            });
+        }).catch((error) => {
+            product.liked = false;
+            this.notification.fail('Error adding product to list');
+        });
     }
 }
 
 register.viewControl('home-vc', HomeViewControl, [
-    CustomerSvc
+    CustomerSvc,
+    ListSvc
 ]);

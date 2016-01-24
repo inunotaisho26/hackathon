@@ -22,7 +22,7 @@
         <plat-foreach plat-context="products">
             <div class="row">
                 <div class="image" plat-style="background-image: url({{imageUrls.xl}});">
-                    <div class="like-button" plat-tap="toggleLike(@context)">
+                    <div class="like-button" plat-tap="toggleLike(@context)" plat-visible="{{canLike}}">
                         <i class="fa fa-{{liked ? 'thumbs-up' : 'thumbs-o-up'}}{{liked ? ' active' : ''}}"></i>
                     </div>
                 </div>
