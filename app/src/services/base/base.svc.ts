@@ -65,45 +65,44 @@ export default class BaseService {
     }
 
     protected json(options: async.IHttpConfig): plat.async.IThenable<any> {
-        return this.wait(500, this.json.bind(this, options));
-        let utils = this.utils;
+        return this.wait(500).then(() => {
+            let utils = this.utils;
 
-        let headers = <any>{};
+            let headers = <any>{};
 
-        if (utils.isString(BaseService.accessToken)) {
-            headers[OAUTH_HEADER] = OAUTH_PREFIX + BaseService.accessToken;
-        }
+            if (utils.isString(BaseService.accessToken)) {
+                headers[OAUTH_HEADER] = OAUTH_PREFIX + BaseService.accessToken;
+            }
 
-        if (utils.isString(BaseService.ssoToken) && options.url.indexOf('login') === -1) {
-            headers[SSO_HEADER] = BaseService.ssoToken;
-        }
+            if (utils.isString(BaseService.ssoToken) && options.url.indexOf('login') === -1) {
+                headers[SSO_HEADER] = BaseService.ssoToken;
+            }
 
-        let extend = utils.extend;
-        extend(options, {
-            headers: extend({}, options.headers, headers),
-            timeout: 15000
+            let extend = utils.extend;
+            extend(options, {
+                headers: extend({}, options.headers, headers),
+                timeout: 15000
+            });
+
+            let url = options.url;
+
+            if (url.indexOf('?') > -1) {
+                url += '&';
+            } else {
+                url += '?'
+            }
+
+            url += 'api_key=' + BaseService.apiKey;
+
+            options.url = url;
+
+            return this.http.json(options).then(this.handleResponse, this.handleError.bind(this));
         });
-
-        let url = options.url;
-
-        if (url.indexOf('?') > -1) {
-            url += '&';
-        } else {
-            url += '?'
-        }
-
-        url += 'api_key=' + BaseService.apiKey;
-
-        options.url = url;
-
-        return this.http.json(options).then(this.handleResponse, this.handleError.bind(this));
     }
 
-    protected wait(time: number, method: Function): async.IThenable<void> {
+    protected wait(time: number): async.IThenable<void> {
         return new this.Promise<void>((resolve) => {
             this.utils.defer(resolve, time);
-        }).then(() => {
-            return method();
         });
     }
 
