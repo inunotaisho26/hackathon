@@ -137,7 +137,8 @@ export default class MyLowesViewControl extends BaseViewControl {
                 this.storage.setItem('customer', JSON.stringify(user));
             }
 
-            this.context.user = user;
+            context.user = user;
+            context.email = context.password = '';
         }).catch((error) => {
             this.notification.fail('Invalid Login Credentials');
         }).then(() => {
