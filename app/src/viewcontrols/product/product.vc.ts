@@ -6,7 +6,8 @@ export default class ProductViewControl extends BaseViewControl {
     templateString: string = require('./product.vc.html');
 
     context = {
-        product: <models.IProduct>null
+        product: <models.IProduct>null,
+        loading: true
     };
 
     constructor(private products: Product, private storage: storage.LocalStorage) {
@@ -19,9 +20,11 @@ export default class ProductViewControl extends BaseViewControl {
             priceFlag: 'status',
             storeNumber: this.storage.getItem<number>('store')
         }).then((products) => {
-            let product = products[0];
-
-            this.context.product = product;
+            console.log(products[0]);
+            this.context.loading = false;
+            this.context.product = products[0];
+        }).catch(() => {
+            this.notification.fail('Failed to get Product');
         });
     }
 }

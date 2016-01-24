@@ -1,1 +1,29 @@
-<h1>Cart</h1>
+<plat-resources>
+    <injectable alias="converters">converters</injectable>
+</plat-resources>
+<div class="title">Checkout</div>
+<plat-ring class="loading-ring" plat-visible="{{loading}}"></plat-ring>
+<div class="none" plat-visible="{{!loading && noItems}}">No items</div>
+<div class="button-block row" plat-tap="clear" plat-visible="{{!noItems && !success}}">
+    <plat-button>Reserve for Pickup</plat-button>
+    <plat-button>Checkout</plat-button>
+</div>
+<div class="success" plat-visible="{{!noItems && success}}">
+    <i class="fa fa-check-circle secondary"></i><br>
+    <span class="primary">Success!</span>
+</div>
+<plat-foreach plat-context="products" plat-visible="{{!loading && products.length > 0}}" plat-options="{ animate: true }">
+    <div class="tile" plat-tap="navigate(productInformation.catalogEntryId)">
+        <div class="image" plat-style="background-image: url({{@root.imageUrl(imageId)}});">
+            <div class="product-text">
+                <span class="product-name">{{@converters.title(name)}}</span>
+                <div class="remove" plat-tap="remove(@index)"><i class="fa fa-trash-o"></i></div>
+            </div>
+            <div class="quantity-text">
+                <div class="minus" plat-tap="minus(@context)"><i class="fa fa-minus"></i></div>
+                <div class="quantity"><span>{{quantity}}</span></div>
+                <div class="plus" plat-tap="plus(@context)"><i class="fa fa-plus"></i></div>
+            </div>
+        </div>
+    </div>
+</plat-foreach>

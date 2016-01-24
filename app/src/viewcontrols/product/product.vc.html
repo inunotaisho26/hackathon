@@ -1,12 +1,38 @@
 <plat-resources>
     <injectable alias="converters">converters</injectable>
 </plat-resources>
-<header class="hero" plat-style="background-image: url({{product.imageUrls.xl}})">
-    <section class="hero-caption">
-        <div class="container">
-            <h1 class="hero-title uppercase">{{@converters.title(product.description, true)}}</h1>
-            <div class="hero-description uppercase bold">{{product.disclaimer}}</div>
-        </div>
+<plat-ring class="loading-ring" plat-visible="{{loading}}"></plat-ring>
+<div class="page" plat-visible="{{!loading}}">
+    <header class="hero" plat-style="background-image: url({{product.imageUrls.xl}})">
+        <section class="hero-caption">
+            <div class="container">
+                <h1 class="hero-title uppercase">{{@converters.title(product.description, true)}}</h1>
+                <div class="hero-description uppercase bold">{{product.disclaimer}}</div>
+            </div>
+        </section>
+        <section class="overlay"></section>
+    </header>
+    <section class="specifications">
+        <table>
+            <tbody plat-control="plat-foreach" plat-context="product.specification.specs">
+            <tr>
+                <td>{{Key}}</td>
+                <td class="text-right">{{Value}}</td>
+            </tr>
+            </tbody>
+        </table>
     </section>
-    <section class="overlay"></section>
-</header>
+    <section class="required">
+        <div class="title primary">Recommended Buys</div>
+        <plat-foreach class="row" plat-context="product.requiredItems.productList">
+            <div class="col-phn-6">
+                <div class="card" plat-style="background-image: url({{imageUrls.xl}})">
+                    <div class="overlay"></div>
+                </div>
+                <div class="name">
+                    <span>{{description}}</span>
+                </div>
+            </div>
+        </plat-foreach>
+    </section>
+</div>

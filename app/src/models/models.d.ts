@@ -72,6 +72,8 @@ declare namespace models {
         numberOfSpaces: number;
         id: number;
         new: boolean;
+        inCart?: boolean;
+        quantity?: number;
     }
 
     interface IProductInformation {

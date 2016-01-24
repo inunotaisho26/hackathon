@@ -71,7 +71,7 @@ export default class ListService extends BaseService {
         });
     }
 
-    getCart(): Array<models.IProduct> {
+    getCart(): Array<models.IListItem> {
         return JSON.parse(JSON.stringify(this.cart));
     }
 

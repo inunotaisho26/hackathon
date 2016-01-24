@@ -32,6 +32,16 @@ export default class ListViewControl extends BaseViewControl {
                     this.context.noItems = true;
                 }
 
+                let cart = this.lists.getCart();
+                this.utils.forEach((item) => {
+                    this.utils.some((product) => {
+                        if (product.id === item.id) {
+                            product.inCart = true;
+                            return true;
+                        }
+                    }, items.list);
+                }, cart);
+
                 this.context.products = items.list;
             });
         }).catch(this.utils.noop).then(() => {
@@ -64,12 +74,19 @@ export default class ListViewControl extends BaseViewControl {
         products.splice(index, 1);
     }
 
-    addToCart(product: models.IListItem) {
+    addToCart(product: models.IListItem, ev: ui.IGestureEvent) {
+        ev.preventDefault();
+        ev.stopPropagation();
+
         this.lists.addToCart(product);
-        this.notification.success();
+        product.inCart = true;
     }
 
     protected imageUrl(id: string) {
+        if (!this.utils.isString(id)) {
+            return;
+        }
+
         return `https://mobileimages.lowes.com/product/converted/${id.slice(0, 6)}/${id}.jpg`
     }
 }

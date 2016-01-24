@@ -10,7 +10,7 @@
             <div class="product-text">
                 <span class="product-name">{{@converters.title(name)}}</span>
                 <div class="remove" plat-tap="remove(@index)"><i class="fa fa-trash-o"></i></div>
-                <div class="add" plat-tap="addToCart(@context)"><i class="fa fa-cart-plus"></i></div>
+                <div class="add" plat-tap="addToCart(@context)"><i class="fa fa-{{inCart ? 'check' : 'cart-plus'}}"></i></div>
             </div>
         </div>
     </div>
