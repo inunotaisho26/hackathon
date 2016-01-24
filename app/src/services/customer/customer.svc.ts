@@ -32,6 +32,7 @@ export default class CustomerService extends BaseService {
     logout(): async.IThenable<void> {
         this.storage.removeItem('sso');
         this.storage.removeItem('store');
+        this.storage.removeItem('customer');
 
         return this.Promise.resolve();
     }
