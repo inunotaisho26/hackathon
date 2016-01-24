@@ -33,7 +33,7 @@ export default class BaseService {
         this.api = api + '/';
     }
 
-    protected post(data: any, path?: string): plat.async.IAjaxThenable<any> {
+    protected post(data: any, path?: string): plat.async.IThenable<any> {
         return this.json({
             method: 'POST',
             url: BaseService.host + this.api + this.pathToString(path),
@@ -41,14 +41,14 @@ export default class BaseService {
         });
     }
 
-    protected get(path?: string, data?: any): plat.async.IAjaxThenable<any> {
+    protected get(path?: string, data?: any): plat.async.IThenable<any> {
         return this.json({
             method: 'GET',
             url: BaseService.host + this.api + this.pathToString(path) + this.toQuery(data)
         });
     }
 
-    protected put(data: any, path?: string): plat.async.IAjaxThenable<any> {
+    protected put(data: any, path?: string): plat.async.IThenable<any> {
         return this.json({
             method: 'PUT',
             url: BaseService.host + this.api + this.pathToString(path),
@@ -56,7 +56,7 @@ export default class BaseService {
         });
     }
 
-    protected delete(data?: any, path?: string): plat.async.IAjaxThenable<any> {
+    protected delete(data?: any, path?: string): plat.async.IThenable<any> {
         return this.json({
             method: 'DELETE',
             url: BaseService.host + this.api + this.pathToString(path),
@@ -64,7 +64,8 @@ export default class BaseService {
         });
     }
 
-    protected json(options: async.IHttpConfig): plat.async.IAjaxThenable<any> {
+    protected json(options: async.IHttpConfig): plat.async.IThenable<any> {
+        return this.wait(500, this.json.bind(this, options));
         let utils = this.utils;
 
         let headers = <any>{};
@@ -96,6 +97,14 @@ export default class BaseService {
         options.url = url;
 
         return this.http.json(options).then(this.handleResponse, this.handleError.bind(this));
+    }
+
+    protected wait(time: number, method: Function): async.IThenable<void> {
+        return new this.Promise<void>((resolve) => {
+            this.utils.defer(resolve, time);
+        }).then(() => {
+            return method();
+        });
     }
 
     protected handleResponse(result: async.IAjaxResponse<any>): any {
