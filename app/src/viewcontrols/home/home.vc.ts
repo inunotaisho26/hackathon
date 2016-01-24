@@ -104,7 +104,9 @@ export default class HomeViewControl extends BaseViewControl {
                 context.canLike = false;
                 this.notification.fail('Error retrieving user list');
             });
-        }).catch(utils.noop);
+        }).catch((error) => {
+            context.canLike = false;
+        });
     }
 
     toggleLike(product: any) {
