@@ -1,6 +1,7 @@
 import {App, events, register, routing, web, Compat, Utils, Window} from 'platypus';
 import Home from '../viewcontrols/home/home.vc';
 import List from '../viewcontrols/list/list.vc';
+import Product from '../viewcontrols/product/product.vc';
 import Cart from '../viewcontrols/cart/cart.vc';
 import MyLowes from '../viewcontrols/mylowes/mylowes.vc';
 import FindStore from '../viewcontrols/findstore/findstore.vc';
@@ -19,6 +20,7 @@ export default class MyApp extends App {
         router.configure([
             { pattern: '', view: Home },
             { pattern: 'list', view: List },
+            { pattern: 'product/:id', view: Product },
             { pattern: 'cart', view: Cart },
             { pattern: 'mylowes', view: MyLowes },
             { pattern: 'findstore', view: FindStore },

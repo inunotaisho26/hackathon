@@ -2,6 +2,8 @@ import {async, register} from 'platypus';
 import BaseService from '../base/base.svc';
 
 export default class ListService extends BaseService {
+    protected cart: Array<models.IListItem> = [];
+
     constructor() {
         super('user/list');
     }
@@ -47,6 +49,34 @@ export default class ListService extends BaseService {
 
     deleteItem(entityId: number): async.IThenable<any> {
         return this.delete(undefined, '/entity?entityId=' + entityId);
+    }
+
+    addToCart(product: models.IListItem): void {
+        product = JSON.parse(JSON.stringify(product));
+
+        let id = product.productInformation.catalogEntryId;
+
+        let exists = this.utils.some((item) => {
+            return item.productInformation.catalogEntryId === id;
+        }, this.cart);
+
+        if (!exists) {
+            this.cart.push(product);
+        }
+    }
+
+    removeFromCart(productId: number): void {
+        this.cart = this.cart.filter((item) => {
+            return item.productInformation.catalogEntryId !== productId;
+        });
+    }
+
+    getCart(): Array<models.IProduct> {
+        return JSON.parse(JSON.stringify(this.cart));
+    }
+
+    clear(): void {
+        this.cart = [];
     }
 }
 

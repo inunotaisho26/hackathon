@@ -1,1 +1,14 @@
-<h1>List</h1>
+<plat-foreach plat-context="products">
+    <div class="row">
+        <div class="image" plat-style="background-image: url({{@root.imageUrl(imageId)}});">
+            <div class="like-button" plat-tap="toggleLike(@context)" plat-visible="{{@rootContext.canLike}}">
+                <i class="fa fa-{{liked ? 'thumbs-up' : 'thumbs-o-up'}}{{liked ? ' active' : ''}}"></i>
+            </div>
+        </div>
+        <div class="product-text">
+            <h4 class="product-name">{{name}}</h4>
+            <p class="product-description">{{description}}</p>
+            <plat-link plat-options="{ view: @rootContext.Product, parameters: { id: productInformation.catalogEntryId } }">More Info</plat-link>
+        </div>
+    </div>
+</plat-foreach>
