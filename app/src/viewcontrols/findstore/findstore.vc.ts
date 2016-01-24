@@ -6,7 +6,7 @@ export default class FindStoreViewControl extends BaseViewControl {
     templateString: string = require('./findstore.vc.html');
 
     context = {
-        stores: <Array<models.IStoreLocation>>null,
+        stores: <Array<models.ILocation>>null,
         loading: true
     };
 
@@ -16,6 +16,18 @@ export default class FindStoreViewControl extends BaseViewControl {
 
     initialize() {
         // populate stores
+        let context = this.context;
+        this.stores.near().then((stores) => {
+            if (!this.utils.isArray(stores.storeLocation)) {
+                stores.storeLocation = [];
+            }
+
+            context.stores = stores.storeLocation;
+        }).catch((error) => {
+            this.notification.fail('Error retrieving stores');
+        }).then(() => {
+            context.loading = false;
+        });
     }
 }
 
