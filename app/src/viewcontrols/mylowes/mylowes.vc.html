@@ -1,7 +1,7 @@
 <div class="title">my<span class="bold">lowes</span></div>
 <plat-if plat-options="{ condition: !user }" class="login">
     <div class="sign-in">Sign In</div>
-    <form class="login-form" plat-submit="login">
+    <div class="login-form">
         <plat-input plat-name="email" type="text" class="input-outline input-primary input-no-action" plat-bind="email">Email Address</plat-input><br>
         <plat-input plat-name="password" type="password" class="input-outline input-primary input-no-action" plat-bind="password">Password</plat-input><br>
         <span class="forgot">Forgot Your Password?</span><br>
@@ -9,10 +9,10 @@
             <div class="col-phn-8">Save Email</div>
             <div class="col-phn-4"><plat-toggle class="toggle-secondary"></plat-toggle></div>
         </div>
-        <plat-button class="button-secondary" type="submit">Sign In
+        <plat-button class="button-secondary" plat-tap="login">Sign In
             <plat-ring class="button-ring" plat-visible="{{processing}}"></plat-ring>
         </plat-button>
-    </form>
+    </div>
     <hr>
     <h5>Don't Have An Account?</h5>
     <p class="sign-up">With a MyLowe's account, you can see personalized suggestions, get inspired, and more!</p>

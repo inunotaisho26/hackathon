@@ -102,7 +102,8 @@ export default class HomeViewControl extends BaseViewControl {
                 }, items.list);
             }).catch((error) => {
                 context.canLike = false;
-                this.notification.fail('Error retrieving user list');
+                // this.notification.fail('Error retrieving user list');
+                this.utils.defer(this.initialize, 1000, null, this);
             });
         }).catch((error) => {
             context.canLike = false;
