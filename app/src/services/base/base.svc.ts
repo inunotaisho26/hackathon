@@ -109,7 +109,7 @@ export default class BaseService {
     }
 
     protected handleError(options: async.IHttpConfig, error: async.AjaxError): async.IThenable<any> {
-        if (error.status !== 403) {
+        if (error.status !== 403 && error.status !== 504) {
             throw error.response;
         }
 
