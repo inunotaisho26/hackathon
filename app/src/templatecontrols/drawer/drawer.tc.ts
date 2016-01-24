@@ -1,4 +1,5 @@
 import {events, register, routing, ui, web, Window, Compat} from 'platypus';
+import StoreSvc from '../../services/store/store.svc';
 import Helpers from '../../injectables/helpers/helpers';
 import Navbar from '../navbar/navbar.tc';
 import FindStore from '../../viewcontrols/findstore/findstore.vc';
@@ -21,7 +22,12 @@ export default class DrawerTemplateControl extends ui.TemplateControl {
         status: ''
     };
 
-    constructor(private helpers: Helpers, private browser: web.Browser, private navbar: Navbar, private window: Window, private compat: Compat) {
+    constructor(private helpers: Helpers,
+    private browser: web.Browser,
+    private navbar: Navbar,
+    private window: Window,
+    private compat: Compat,
+    private stores: StoreSvc) {
         super();
 
         this.on('navigated', (ev: events.DispatchEvent, utils: web.UrlUtils) => {
@@ -48,17 +54,19 @@ export default class DrawerTemplateControl extends ui.TemplateControl {
 
     refreshStore() {
         let context = this.context;
-
-        // get store
-        context.store = <any>{
-            storeName: 'Lowe\'s of S.E. Austin, TX',
-            dailyHours: {
-                saturday: [21600, 75600],
-                sunday: [28800, 68400]
-            }
-        };
-
-        context.status = this.createStatus(context.store);
+        this.stores.me().then((store) => {
+            context.store = store;
+        }).catch(() => {
+            context.store = <any>{
+                storeName: 'Lowe\'s of S.E. Austin, TX',
+                dailyHours: {
+                    saturday: [21600, 75600],
+                    sunday: [28800, 68400]
+                }
+            };
+        }).then(() => {
+            context.status = this.createStatus(context.store);
+        });
     }
 
     navigate(link: ILink, ev: ui.IGestureEvent) {
@@ -126,5 +134,6 @@ register.control('drawer', DrawerTemplateControl, [
     web.Browser,
     Navbar,
     Window,
-    Compat
+    Compat,
+    StoreSvc
 ]);

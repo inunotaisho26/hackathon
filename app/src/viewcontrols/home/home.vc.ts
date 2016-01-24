@@ -79,17 +79,32 @@ export default class HomeViewControl extends BaseViewControl {
     }
 
     initialize() {
-        let context = this.context;
-        this.customers.login().then((user) => {
-            context.user = user;
-        }).catch(this.utils.noop);
+        let context = this.context,
+            utils = this.utils;
 
-        this.listPromise = this.lists.list(LIST_NAME).then((list) => {
-            this.listId = list.id;
-        }).catch((error) => {
-            context.canLike = false;
-            this.notification.fail('Error retrieving user list');
-        });
+        this.listPromise = this.customers.login().then((user) => {
+            context.user = user;
+
+            return this.lists.list(LIST_NAME).then((list) => {
+                this.listId = list.id;
+                return this.lists.items(list.id);
+            }).then((items) => {
+                let products = this.getProducts();
+
+                utils.forEach((item) => {
+                    let entryId = item.productInformation.catalogEntryId;
+                    utils.some((product) => {
+                        if (product.id === entryId) {
+                            (<any>product).liked = true;
+                            return true;
+                        }
+                    }, products);
+                }, items.list);
+            }).catch((error) => {
+                context.canLike = false;
+                this.notification.fail('Error retrieving user list');
+            });
+        }).catch(utils.noop);
     }
 
     toggleLike(product: any) {
@@ -107,7 +122,7 @@ export default class HomeViewControl extends BaseViewControl {
             return this.lists.items(this.listId).then((items) => {
                 let entityId: number;
                 this.utils.some((item) => {
-                    if (item.id === product.id) {
+                    if (item.productInformation.catalogEntryId === product.id) {
                         entityId = item.entityId;
                         return true;
                     }
@@ -123,6 +138,11 @@ export default class HomeViewControl extends BaseViewControl {
             product.liked = false;
             this.notification.fail('Error adding product to list');
         });
+    }
+
+    getProducts() {
+        let sections = this.context.article.sections;
+        return sections[0].products.concat(sections[1].products).concat(sections[2].products);
     }
 }
 
