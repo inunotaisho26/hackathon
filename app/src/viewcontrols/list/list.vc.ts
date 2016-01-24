@@ -1,4 +1,4 @@
-import {register} from 'platypus';
+import {register, ui} from 'platypus';
 import BaseViewControl from '../base/base.vc';
 import Product from '../product/product.vc';
 import Customer from '../../services/customer/customer.svc';
@@ -38,6 +38,24 @@ export default class ListViewControl extends BaseViewControl {
         this.navigator.navigate(Product, {
             parameters: { id }
         });
+    }
+
+    remove(index: number, ev: ui.IGestureEvent) {
+        ev.preventDefault();
+        ev.stopPropagation();
+
+        let item = this.context.products[index];
+        this.lists.deleteItem(item.productInformation.catalogEntryId).catch(() => {
+            this.notification.fail('Error removing item from list');
+            this.context.products.splice(index, 0, item);
+        });
+
+        this.context.products.splice(index, 1);
+    }
+
+    addToCart(product: models.IListItem) {
+        this.lists.addToCart(product);
+        this.notification.success();
     }
 
     protected imageUrl(id: string) {
