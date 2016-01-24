@@ -1,8 +1,9 @@
 import {async, register} from 'platypus';
 import BaseService from '../base/base.svc';
+import List from '../list/list.svc';
 
 export default class CustomerService extends BaseService {
-    constructor() {
+    constructor(private list: List) {
         super('customer/login');
     }
 
@@ -25,7 +26,9 @@ export default class CustomerService extends BaseService {
             this.storage.setItem('store', customer.x_serviceStoreNumber);
             this.storage.setItem('customer', JSON.stringify(customer));
 
-            return customer;
+            return this.list.create('Lowes Grows Garden', 'Let your garden grow with Lowes').then(() => {
+                return customer;
+            });
         });
     }
 
@@ -38,4 +41,6 @@ export default class CustomerService extends BaseService {
     }
 }
 
-register.injectable('customer-svc', CustomerService);
+register.injectable('customer-svc', CustomerService, [
+    List
+]);
