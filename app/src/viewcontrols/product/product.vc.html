@@ -1,7 +1,10 @@
+<plat-resources>
+    <injectable alias="converters">converters</injectable>
+</plat-resources>
 <header class="hero" plat-style="background-image: url({{product.imageUrls.xl}})">
     <section class="hero-caption">
         <div class="container">
-            <h1 class="hero-title uppercase">{{product.description}}</h1>
+            <h1 class="hero-title uppercase">{{@converters.title(product.description)}}</h1>
             <div class="hero-description uppercase bold">{{product.disclaimer}}</div>
         </div>
     </section>

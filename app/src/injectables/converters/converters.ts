@@ -40,6 +40,13 @@ export default class Converters {
 
         return first + 'am - ' + second + 'pm';
     }
+
+    title(title: string): string {
+        let firstIndex = title.indexOf(' '),
+            lastIndex = title.lastIndexOf(' ');
+
+        return title.slice(firstIndex + 1, lastIndex);
+    }
 }
 
 register.injectable('converters', Converters);
