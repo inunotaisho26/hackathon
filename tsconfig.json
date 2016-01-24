@@ -46,6 +46,7 @@
         "app/src/viewcontrols/home/home.vc.ts",
         "app/src/viewcontrols/list/list.vc.ts",
         "app/src/viewcontrols/mylowes/mylowes.vc.ts",
+        "app/src/viewcontrols/product/product.vc.ts",
         "server/server.ts",
         "server/utils.ts"
     ]
