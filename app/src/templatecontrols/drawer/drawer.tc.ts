@@ -110,7 +110,7 @@ export default class DrawerTemplateControl extends ui.TemplateControl {
             if (now >= d.getTime()) {
                 // store is closed, will open tomorrow
                 let nextDay = day === 6 ? 0 : day + 1;
-                seconds = store.dailyHours[nextDay];
+                seconds = store.dailyHours[days[nextDay]];
 
                 if (!utils.isArray(seconds) || seconds.length < 2) {
                     return;
@@ -118,14 +118,14 @@ export default class DrawerTemplateControl extends ui.TemplateControl {
 
                 first = seconds[0] / 60 / 60;
 
-                return `Closed now opens at ${first}:00 AM`;
+                return `Closed: Opens at ${first}:00 AM`;
             }
 
             // store is open
             return `Open today until ${second - 12}:00 PM`
         }
 
-        return `Closed now opens at ${first}:00 ${first === 12 ? 'PM' : 'AM'}`;
+        return `Closed: Opens at ${first}:00 ${first === 12 ? 'PM' : 'AM'}`;
     }
 }
 
@@ -136,4 +136,4 @@ register.control('drawer', DrawerTemplateControl, [
     Window,
     Compat,
     StoreSvc
-]);
+], true);
