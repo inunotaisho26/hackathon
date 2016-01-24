@@ -12,6 +12,7 @@ export default class MyLowesViewControl extends BaseViewControl {
         processing: false,
         user: <models.ICustomer>null,
         residence: 'House',
+        experience: 'Black thumb',
         shade: 0,
         convertShade: (shade: number) => {
             switch(shade) {
@@ -45,6 +46,12 @@ export default class MyLowesViewControl extends BaseViewControl {
                 user.residence = context.residence;
             }
 
+            if (utils.isString(user.experience)) {
+                context.experience = user.experience;
+            } else {
+                user.experience = context.experience;
+            }
+
             if (utils.isNumber(user.shade)) {
                 context.shade = user.shade;
             } else {
@@ -57,6 +64,7 @@ export default class MyLowesViewControl extends BaseViewControl {
 
     loaded() {
         this.observe(this.saveUser, 'residence');
+        this.observe(this.saveUser, 'experience');
         this.observe(this.saveUser, 'shade');
     }
 
@@ -64,6 +72,7 @@ export default class MyLowesViewControl extends BaseViewControl {
         let context = this.context;
         this.utils.extend(context.user, {
             residence: context.residence,
+            experience: context.experience,
             shade: context.shade
         });
         this.storage.setItem('customer', JSON.stringify(context.user));
@@ -108,6 +117,13 @@ export default class MyLowesViewControl extends BaseViewControl {
             } else {
                 store = true;
                 user.residence = context.residence;
+            }
+
+            if (utils.isString(user.experience)) {
+                context.experience = user.experience;
+            } else {
+                store = true;
+                user.experience = context.experience;
             }
 
             if (utils.isNumber(user.shade)) {

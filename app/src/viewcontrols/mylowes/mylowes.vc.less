@@ -70,13 +70,19 @@
             width: 100%;
 
             &.sign-out {
-                margin-top: 3em;
+                margin-top: 1.25em;
             }
         }
 
         .account {
             .input-block {
-                margin-bottom: 2em;
+                @border: 1px solid darken(@background-grey, 10%);
+                padding: 1.1em 0;
+                border-top: @border;
+
+                &:last-of-type {
+                    border-bottom: @border;
+                }
 
                 .question {
                     margin-bottom: 0.25em;
