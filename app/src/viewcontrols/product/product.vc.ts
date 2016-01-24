@@ -19,11 +19,7 @@ export default class ProductViewControl extends BaseViewControl {
             priceFlag: 'status',
             storeNumber: this.storage.getItem<number>('store')
         }).then((products) => {
-            let product = products[0],
-                firstIndex = product.description.indexOf(' '),
-                lastIndex = product.description.lastIndexOf(' ');
-
-            product.description = product.description.slice(firstIndex + 1, lastIndex);
+            let product = products[0];
 
             this.context.product = product;
         });

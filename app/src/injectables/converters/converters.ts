@@ -11,18 +11,18 @@ export default class Converters {
     imageUrl(data: any): string {
         let utils = this.utils;
 
-        if(!utils.isObject(data)) {
+        if (!utils.isObject(data)) {
             return '';
         }
 
         let imageUrl: string = data.imageUrl,
             imageId: string = data.imageId;
 
-        if(utils.isNull(imageUrl) && utils.isNull(imageId)) {
+        if (utils.isNull(imageUrl) && utils.isNull(imageId)) {
             return '';
         }
 
-        if(!utils.isNull(imageUrl)) {
+        if (!utils.isNull(imageUrl)) {
             return imageUrl;
         }
 
@@ -39,6 +39,17 @@ export default class Converters {
         second = second / 60 / 60;
 
         return first + 'am - ' + second + 'pm';
+    }
+
+    title(title: string, both = false): string {
+        let firstIndex = title.indexOf(' '),
+            lastIndex = title.lastIndexOf(' ');
+
+        if (!both) {
+            return title.slice(firstIndex + 1);
+        }
+
+        return title.slice(firstIndex + 1, lastIndex);
     }
 }
 
