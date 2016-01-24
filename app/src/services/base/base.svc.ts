@@ -65,39 +65,37 @@ export default class BaseService {
     }
 
     protected json(options: async.IHttpConfig): plat.async.IThenable<any> {
-        return this.wait(500).then(() => {
-            let utils = this.utils;
+        let utils = this.utils;
 
-            let headers = <any>{};
+        let headers = <any>{};
 
-            if (utils.isString(BaseService.accessToken)) {
-                headers[OAUTH_HEADER] = OAUTH_PREFIX + BaseService.accessToken;
-            }
+        if (utils.isString(BaseService.accessToken)) {
+            headers[OAUTH_HEADER] = OAUTH_PREFIX + BaseService.accessToken;
+        }
 
-            if (utils.isString(BaseService.ssoToken) && options.url.indexOf('login') === -1) {
-                headers[SSO_HEADER] = BaseService.ssoToken;
-            }
+        if (utils.isString(BaseService.ssoToken) && options.url.indexOf('login') === -1) {
+            headers[SSO_HEADER] = BaseService.ssoToken;
+        }
 
-            let extend = utils.extend;
-            extend(options, {
-                headers: extend({}, options.headers, headers),
-                timeout: 15000
-            });
-
-            let url = options.url;
-
-            if (url.indexOf('?') > -1) {
-                url += '&';
-            } else {
-                url += '?'
-            }
-
-            url += 'api_key=' + BaseService.apiKey;
-
-            options.url = url;
-
-            return this.http.json(options).then(this.handleResponse, this.handleError.bind(this));
+        let extend = utils.extend;
+        extend(options, {
+            headers: extend({}, options.headers, headers),
+            timeout: 15000
         });
+
+        let url = options.url;
+
+        if (url.indexOf('?') > -1) {
+            url += '&';
+        } else {
+            url += '?'
+        }
+
+        url += 'api_key=' + BaseService.apiKey;
+
+        options.url = url;
+
+        return this.http.json(options).then(this.handleResponse, this.handleError.bind(this, options));
     }
 
     protected wait(time: number): async.IThenable<void> {
@@ -111,6 +109,7 @@ export default class BaseService {
     }
 
     protected handleError(error: async.AjaxError): void {
+        console.log(error);
         throw error.response;
     }
 
